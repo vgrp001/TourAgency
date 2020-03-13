@@ -1,0 +1,71 @@
+﻿@model IEnumerable<TourAgency.Web.Models.TourViewModel>
+
+@{
+    ViewBag.Title = "TourСatalog";
+}
+
+
+
+<h2>All tours</h2>
+@using (Html.BeginForm("TourСatalog", "Customer", FormMethod.Post, htmlAttributes: new { @id = "Form" }))
+{
+    <select name="sortType" class="form-control" onchange="document.getElementById('myForm').submit();">
+        <option value="1">Hot tours</option>
+        <option value="2">From smaller to larger</option>
+        <option value="3">From larger to smaller</option>
+    </select>
+    <br />
+    @Html.RadioButton("sort", 1, true, htmlAttributes: new { @onchange = "document.getElementById('Form').submit();" })
+    <span>Price</span>
+    <br />
+    @Html.RadioButton("sort", 2, htmlAttributes: new { @onchange = "document.getElementById('Form').submit();" })
+    <span>Type of tour</span>
+    <br />
+    @Html.RadioButton("sort", 3, htmlAttributes: new { @onchange = "document.getElementById('Form').submit();" })
+    <span>Max numder of people</span>
+    <br />
+    @Html.RadioButton("sort", 4, htmlAttributes: new { @onchange = "document.getElementById('Form').submit();" })
+    <span>Hotel stars</span>
+    @Html.RadioButton("sort", 5, htmlAttributes: new { @onchange = "document.getElementById('Form').submit();" })
+    <span>Start of tour</span>
+}
+
+
+@using (Html.BeginForm("OrderTour", "Customer", FormMethod.Post))
+{
+    <div class="container d-flex justify-content-around">
+        @foreach (var item in Model)
+        {
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    @Html.DisplayNameFor(model => model.Price)
+                    <span>: </span>
+                    <span>@item.Price</span>
+                    <br />
+                    @Html.DisplayNameFor(model => model.NumberOfOrders)
+                    <span>: </span>
+                    <span>@item.NumberOfOrders</span>
+                    <br />
+                    @Html.DisplayNameFor(model => model.StartOfTour)
+                    <span>: </span>
+                    <span>@item.StartOfTour</span>
+                    <br />
+                    @Html.DisplayNameFor(model => model.EndOfTour)
+                    <span>: </span>
+                    <span>@item.EndOfTour</span>
+                    <br />
+                    @Html.DisplayNameFor(model => model.City)
+                    <span>: </span>
+                    <span>@item.City.NameCity</span>
+                    <br />
+                    @Html.DisplayNameFor(model => model.TypeOfTour)
+                    <span>: </span>
+                    <span>@item.TypeOfTour.Type</span>
+                    <br />
+                    @Html.ActionLink("Order Tour", "OrderTour", new { id = item.Id }, new { @class = "btn btn-success w-50 d-block mx-auto" })
+                </div>
+            </div>
+        }
+    </div>
+    <hr />
+}

@@ -1,0 +1,74 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+
+img {
+    padding: 3px;
+    transition: transform .2s; 
+    position: center;
+    width: 250px;
+    height: 250px;
+    margin: 0 auto;
+}
+
+.zoom .zoom-left .zoom-right .zoom-up .zoom-down .zoom-left-upper-corner
+.zoom-right-upper-corner .zoom-left-lower-corner .zoom-left-upper-corner .zoom-right-lower-corner {
+}
+
+.zoom:hover {
+    transform: scale(1.6);
+}
+
+.zoom-left:hover {
+    transform: scale(1.6) translateX(18.4%);
+}
+
+.zoom-right:hover {
+    transform: scale(1.6) translateX(-18.4%);
+}
+
+.zoom-up:hover {
+    transform: scale(1.6) translateY(-18.4%);
+}
+
+.zoom-down:hover {
+    transform: scale(1.6) translateY(18.4%);
+}
+
+.zoom-left-upper-corner:hover {
+    transform: scale(1.6) translate(18.4%, 18.4%);
+}
+
+.zoom-right-upper-corner:hover {
+    transform: scale(1.6) translate(-18.4%, 18.4%);
+}
+
+.zoom-left-lower-corner:hover {
+    transform: scale(1.6) translate(18.4%, -18.4%);
+}
+
+.zoom-right-lower-corner:hover {
+    transform: scale(1.6) translate(-18.4%, -18.4%);
+}

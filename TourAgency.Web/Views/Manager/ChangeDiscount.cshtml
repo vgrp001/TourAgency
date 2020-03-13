@@ -1,0 +1,50 @@
+﻿@model TourAgency.Web.Models.CustomerViewModel
+
+@{
+    ViewBag.Title = "ChangeDiscount";
+}
+
+<h2>ChangeDiscount</h2>
+
+
+<div class="card-body">
+    <div class="col-sm-6 mx-auto">
+        <div class="card">
+            <h4 class="text-center">Update Info Tour</h4>
+            <div class="card-body">
+                @using (Html.BeginForm("ChangeDiscount", "Manager", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(false)
+                    @Html.HiddenFor(model => model.Id, htmlAttributes: new { @name = "id" })
+
+                    @Html.DisplayNameFor(model => model.Name)
+                    @Html.DisplayFor(model => model.Name)
+                    <br />
+                    @Html.DisplayNameFor(model => model.Surname)
+                    @Html.DisplayFor(model => model.Surname)
+                    <br />
+                    <b>Old max discount:</b>
+                    @Html.DisplayFor(model => model.MaxDiscount)
+                    <br />
+                    <b>New max discount:</b><br />
+                    <input name="maxDiscount" type="number" min="0" max="75" maxlength="3" autocomplete="off" class="form-control numInput">
+                    @Html.ValidationMessageFor(model => model.MaxDiscount, "", new { @class = "text-danger" })
+                    <b>Old step discount:</b>
+                    @Html.DisplayFor(model => model.StepDiscount)
+                    <br />
+                    <b>New step discount:</b><br />
+                    <input name="stepDiscount" type="number" min="1" max="10" maxlength="3" autocomplete="off" class="form-control numInput">
+                    @Html.ValidationMessageFor(model => model.StepDiscount, "", new { @class = "text-danger" })
+                    <br />
+                    <input type="submit" class="btn btn-success w-50" value="Update" />
+                    <br />
+                    <br />
+                    @Html.ActionLink(linkText: "Back to List", actionName: "InfoTourSelect", controllerName: "Manager",
+                    htmlAttributes: new { @class = "btn btn-primary w-50" }, routeValues: null)
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

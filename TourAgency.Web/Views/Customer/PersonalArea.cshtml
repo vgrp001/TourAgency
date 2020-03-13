@@ -1,0 +1,79 @@
+﻿@model IEnumerable<TourAgency.Web.Models.TourCustomerViewModel>
+@{
+    ViewBag.Title = "PersonalArea";
+}
+
+<h2>PersonalArea</h2>
+
+
+<div class="card-body">
+    <div class="col-sm-6 mx-auto">
+        <div class="card">
+            <h4 class="text-center">Personal Information</h4>
+            <div class="card-body">
+                @using (Html.BeginForm("ChangeInformation", "Customer", FormMethod.Get))
+                {
+                    @Html.AntiForgeryToken()
+                    <b>Your Name: </b>
+                    <span>@ViewBag.Customer.Name</span>
+                    <br />
+                    <b>Your Surname: </b>
+                    <span>@ViewBag.Customer.Surname</span>
+                    <br />
+                    <b>You Discount: </b>
+                    <span>@ViewBag.Customer.Discount</span>
+                    <br />
+                    <input type="submit" class="btn btn-success w-50" value="Change information" />
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<h2>ListMyTours</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="container d-flex justify-content-around">
+        @foreach (var item in Model)
+        {
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    @Html.DisplayNameFor(model => model.RealPrice)
+                    <span>: </span>
+                    <span>@item.RealPrice</span>
+                    <br />
+                    @Html.DisplayNameFor(model => model.RealNumberOfPeople)
+                    <span>: </span>
+                    <span>@item.RealNumberOfPeople</span>
+                    <br />
+                    @Html.DisplayNameFor(model => model.Tour.StartOfTour)
+                    <span>: </span>
+                    <span>@item.Tour.StartOfTour</span>
+                    <br />
+                    @Html.DisplayNameFor(model => model.Tour.EndOfTour)
+                    <span>: </span>
+                    <span>@item.Tour.EndOfTour</span>
+                    <br />
+                    @Html.DisplayNameFor(model => model.Tour.City)
+                    <span>: </span>
+                    <span>@item.Tour.City.NameCity</span>
+                    <br />
+                    @Html.DisplayNameFor(model => model.Tour.TypeOfTour)
+                    <span>: </span>
+                    <span>@item.Tour.TypeOfTour.Type</span>
+                    <br />
+                    @Html.DisplayNameFor(model => model.Tour.TypeOfHotel)
+                    <span>: </span>
+                    <span>@item.Tour.TypeOfHotel.Type</span>
+                    <br />
+                    @Html.DisplayNameFor(model => model.TypeOfStatus)
+                    <span>: </span>
+                    <span>@item.TypeOfStatus.Type</span>
+                    <br />
+                </div>
+            </div>
+        }
+    </div>
+    <hr />
+}

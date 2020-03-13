@@ -1,0 +1,56 @@
+﻿@model TourAgency.Bll.BusinessModels.ResponseModel.ListOptionModel
+
+@{
+    ViewBag.Title = "CreateNewTour";
+}
+
+<div class="card-body">
+    <div class="col-sm-6 mx-auto">
+        <div class="card">
+            <h4 class="text-center">Create New Tour</h4>
+            <div class="card-body">
+                @using (Html.BeginForm("CreateNewTour", "Admin", FormMethod.Post))
+                {
+                    @Html.ValidationSummary(false)
+                    <b>Type of tour:</b><br />
+                    <select name="typeOfTourId" class="form-control">
+                        <option value="" hidden selected>Select type of tour</option>
+                        @foreach (var typeOfTour in Model.TypeOfTours)
+                        {
+                            <option value="@typeOfTour.Id">@typeOfTour.Type</option>
+                        }
+                    </select>
+                    <b>Type of hotel:</b><br />
+                    <select id="typeOfHotelsId" name="typeOfHotelsId" class="form-control">
+                        <option value="" hidden selected>Select type of hotel</option>
+                        @foreach (var typeOfHotels in Model.TypeOfHotels)
+                        {
+                            <option value="@typeOfHotels.Id">@typeOfHotels.Type</option>
+                        }
+                    </select>
+                    <b>Max number of people:</b><br />
+                    <input name="maxNumberOfPeople" type="number" min="1" max="15" maxlength="3" autocomplete="off" class="form-control numInput">
+                    <b>Number of orders:</b><br />
+                    <input name="numberOfOrders" type="number" min="1" max="15" maxlength="3" autocomplete="off" class="form-control numInput">
+                    <b>Price:</b><br />
+                    <input name="price" type="number" min="100" max="1000000" step="50" maxlength="7" autocomplete="off" class="form-control numInput">
+                    <b>City:</b><br />
+                    <select name="cityId" class="form-control">
+                        <option value="" hidden selected>Select city</option>
+                        @foreach (var city in Model.Cities)
+                        {
+                            <option value="@city.Id">@city.NameCity</option>
+                        }
+                    </select>
+                    <b>Tour start date:</b><br />
+                    <input type="text" id="picker" name="startOfTour" autocomplete="off" readonly class="form-control">
+                    <b>Tour end date:</b><br />
+                    <input type="text" id="picker" name="endOfTour" autocomplete="off" readonly class="form-control">
+                    <br />
+                    <input type="submit" class="btn btn-success w-50" value="Create" />
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

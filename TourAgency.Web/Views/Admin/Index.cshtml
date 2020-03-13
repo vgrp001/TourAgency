@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>IndexAdmin</h2>
+
+@Html.ActionLink(linkText: "Create new manager", actionName: "CreateNewManager",
+    controllerName: "Account", htmlAttributes: new { @class = "btn btn-primary" }, routeValues: null)
+@Html.ActionLink(linkText: "Block/Unlock manager", actionName: "BlockUnlockManager",
+    controllerName: "Admin", htmlAttributes: new { @class = "btn btn-primary" }, routeValues: null)
+@Html.ActionLink(linkText: "Create new tour", actionName: "CreateNewTour",
+    controllerName: "Admin", htmlAttributes: new { @class = "btn btn-primary" }, routeValues: null)
+
+
+@Html.Partial("~/Views/Manager/Index.cshtml")

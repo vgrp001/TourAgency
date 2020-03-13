@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>IndexManager</h2>
+
+
+@Html.ActionLink(linkText: "Update/Delete tour", actionName: "InfoTourSelect",
+    controllerName: "Manager", htmlAttributes: new { @class = "btn btn-primary" }, routeValues: null)
+@Html.ActionLink(linkText: "Update status of registered tours", actionName: "UpdateStatus",
+    controllerName: "Manager", htmlAttributes: new { @class = "btn btn-primary" }, routeValues: null)
+@Html.ActionLink(linkText: "Update customer information", actionName: "UpdateCustomerInformation",
+    controllerName: "Manager", htmlAttributes: new { @class = "btn btn-primary" }, routeValues: null)
+

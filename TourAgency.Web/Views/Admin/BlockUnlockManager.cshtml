@@ -1,0 +1,38 @@
+﻿@model IEnumerable<TourAgency.Web.Models.ManagerViewModel>
+
+@{
+    ViewBag.Title = "BlockUnlockManager";
+}
+<h2>Block Unlock Manager</h2>
+
+@using (Html.BeginForm())
+{
+    <br />
+    <div class="container-fluid d-flex align-content-center flex-wrap">
+        @foreach (var manager in Model)
+        {
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-body text-center mr-3 ml-3">
+                        @Html.Hidden("id", manager.Id)
+                        <span>@manager.Name</span>
+                        <span>@manager.Surname</span>
+                        <br />
+                        <span>@manager.IsBlock</span>
+                        <br />
+                        @if (manager.IsBlock)
+                        {
+                            @Html.ActionLink("Unlock", "BlockUnlockManager", "Admin", new { id = manager.Id },
+                                new { @class = "btn btn-success w-50 d-block mx-auto" })
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Block", "BlockUnlockManager", "Admin", new { id = manager.Id },
+                                new { @class = "btn btn-danger w-50 d-block mx-auto" })
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}

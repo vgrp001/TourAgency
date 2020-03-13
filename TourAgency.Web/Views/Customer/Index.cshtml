@@ -1,0 +1,64 @@
+﻿@model IEnumerable<TourAgency.Web.Models.TourViewModel>
+@using TourAgency.Web.Models;
+@{
+    ViewBag.Title = "Index";
+}
+
+
+@Html.Partial("~/Views/Home/Index.cshtml")
+
+
+@Html.ActionLink(linkText: "See tour catalog", actionName: "TourСatalog",
+    controllerName: "Customer", htmlAttributes: new { @class = "btn btn-primary" }, routeValues: null)
+
+@Html.ActionLink(linkText: "Personal Area", actionName: "PersonalArea",
+    controllerName: "Customer", htmlAttributes: new { @class = "btn btn-primary" }, routeValues: null)
+
+
+
+
+@using (Html.BeginForm("OrderTour", "Customer", FormMethod.Post))
+{
+    <h2>Hot tours</h2>
+    <br />
+    <div class="container d-flex justify-content-around">
+        @foreach (var tour in Model)
+        {
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    @Html.DisplayNameFor(model => model.Price)
+                    <text>: </text>
+                    @Html.DisplayFor(modelItem => tour.Price)
+                    <br />
+                    @Html.DisplayNameFor(model => model.MaxNumberOfPeople)
+                    <text>: </text>
+                    @Html.DisplayFor(modelItem => tour.MaxNumberOfPeople)
+                    <br />
+                    @Html.DisplayNameFor(model => model.StartOfTour)
+                    <text>: </text>
+                    @Html.DisplayFor(modelItem => tour.StartOfTour)
+                    <br />
+                    @Html.DisplayNameFor(model => model.EndOfTour)
+                    <text>: </text>
+                    @Html.DisplayFor(modelItem => tour.EndOfTour)
+                    <br />
+                    @Html.DisplayNameFor(model => model.City)
+                    <text>: </text>
+                    @Html.DisplayFor(modelItem => tour.City.NameCity)
+                    <br />
+                    @Html.DisplayNameFor(model => model.TypeOfTour)
+                    <text>: </text>
+                    @Html.DisplayFor(modelItem => tour.TypeOfTour.Type)
+                    <br />
+                    @Html.DisplayNameFor(model => model.NumberOfOrders)
+                    <text>: </text>
+                    @Html.DisplayFor(modelItem => tour.NumberOfOrders)
+                    <br />
+                    @Html.ActionLink("Order Tour", "OrderTour", new { id = tour.Id }, new { @class = "btn btn-success w-50 d-block mx-auto" })
+                </div>
+            </div>
+        }
+    </div>
+    <hr />
+}
+
