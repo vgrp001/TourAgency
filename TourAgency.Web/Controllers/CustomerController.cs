@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ using TourAgency.Bll.BusinessModels;
 using TourAgency.Bll.Services.Interfaces;
 using TourAgency.Web.Helpers;
 using TourAgency.Web.Models;
+using TourAgency.Web.Models.Paginations;
 
 namespace TourAgency.Web.Controllers
 {
@@ -20,16 +22,26 @@ namespace TourAgency.Web.Controllers
         {
             _customerService = customerService;
         }
-        public ActionResult Index()
+        public ActionResult Index(MessageViewModel message)
         {
+            if (!string.IsNullOrEmpty(message.Status) && !string.IsNullOrEmpty(message.Info))
+            {
+                ViewData["message"] = message.Info;
+                ViewData["status"] = message.Status;
+            }
             var hotTours = _customerService.GetHotAndNewTours();
             var hotToursViewModel = MappingViewModel.MapTourListViewModel(hotTours);
             return View(hotToursViewModel);
         }
-        public ActionResult TourСatalog(int? sort, int? sortType)
+        public ActionResult TourСatalog(int? sort, int? sortType, int page = 1)
         {
             var activeTours = _customerService.GetActiveTours();
             var activeToursViewModel = MappingViewModel.MapTourListViewModel(activeTours);
+
+            int pageSize = 10;
+            var activeToursPerPages = activeToursViewModel.Skip((page - 1) * pageSize).Take(pageSize);
+            var pageInfo = new PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = activeToursViewModel.Count };
+            var ivm = new TourPaginViewModel { PageInfo = pageInfo, Tours = activeToursPerPages.ToList() };
             if (Request.HttpMethod == "POST")
             {
                 if (sort != null && sortType != null)
@@ -38,53 +50,53 @@ namespace TourAgency.Web.Controllers
                     {
                         case 1:
                             {
-                                if (sortType.Value == 2)
-                                    activeToursViewModel.Sort((x, y) => x.Price.CompareTo(y.Price));
+                                if (sortType.Value == 1)
+                                    ivm.Tours.Sort((x, y) => x.Price.CompareTo(y.Price));
                                 else
-                                    activeToursViewModel.Sort((x, y) => y.Price.CompareTo(x.Price));
+                                    ivm.Tours.Sort((x, y) => y.Price.CompareTo(x.Price));
                                 break;
                             }
                         case 2:
                             {
-                                if (sortType.Value == 2)
-                                    activeToursViewModel.Sort((x, y) => x.TypeOfTourId.CompareTo(y.TypeOfTourId));
+                                if (sortType.Value == 1)
+                                    ivm.Tours.Sort((x, y) => x.TypeOfTourId.CompareTo(y.TypeOfTourId));
                                 else
-                                    activeToursViewModel.Sort((x, y) => y.TypeOfTourId.CompareTo(x.TypeOfTourId));
+                                    ivm.Tours.Sort((x, y) => y.TypeOfTourId.CompareTo(x.TypeOfTourId));
                                 break;
                             }
                         case 3:
                             {
-                                if (sortType.Value == 2)
-                                    activeToursViewModel.Sort((x, y) => x.MaxNumberOfPeople.CompareTo(y.MaxNumberOfPeople));
+                                if (sortType.Value == 1)
+                                    ivm.Tours.Sort((x, y) => x.MaxNumberOfPeople.CompareTo(y.MaxNumberOfPeople));
                                 else
-                                    activeToursViewModel.Sort((x, y) => y.MaxNumberOfPeople.CompareTo(x.MaxNumberOfPeople));
+                                    ivm.Tours.Sort((x, y) => y.MaxNumberOfPeople.CompareTo(x.MaxNumberOfPeople));
                                 break;
                             }
                         case 4:
                             {
-                                if (sortType.Value == 2)
-                                    activeToursViewModel.Sort((x, y) => x.TypeOfHotel.NumberOfStars.CompareTo(y.TypeOfHotel.NumberOfStars));
+                                if (sortType.Value == 1)
+                                    ivm.Tours.Sort((x, y) => x.TypeOfHotel.NumberOfStars.CompareTo(y.TypeOfHotel.NumberOfStars));
                                 else
-                                    activeToursViewModel.Sort((x, y) => y.TypeOfHotel.NumberOfStars.CompareTo(x.TypeOfHotel.NumberOfStars));
+                                    ivm.Tours.Sort((x, y) => y.TypeOfHotel.NumberOfStars.CompareTo(x.TypeOfHotel.NumberOfStars));
                                 break;
                             }
                         case 5:
                             {
-                                if (sortType.Value == 2)
-                                    activeToursViewModel.Sort((x, y) => x.StartOfTour.CompareTo(y.StartOfTour));
+                                if (sortType.Value == 1)
+                                    ivm.Tours.Sort((x, y) => x.StartOfTour.CompareTo(y.StartOfTour));
                                 else
-                                    activeToursViewModel.Sort((x, y) => y.StartOfTour.CompareTo(x.StartOfTour));
+                                    ivm.Tours.Sort((x, y) => y.StartOfTour.CompareTo(x.StartOfTour));
                                 break;
                             }
                         default:
                             break;
                     }
                 }
-                return View(activeToursViewModel);
+                return View(ivm);
             }
             else
             {
-                return View(activeToursViewModel);
+                return View(ivm);
             }
         }
         public ActionResult OrderTour(int id, int? realNumberOfPeople)
@@ -95,9 +107,29 @@ namespace TourAgency.Web.Controllers
             var customer = _customerService.GetCustomerByIdentityUserId(userId);
             if (Request.HttpMethod == "POST")
             {
-                var tourDto = MappingViewModel.MapTourDTO(tourViewModel);
-                _customerService.BuyTour(tourDto, userId, realNumberOfPeople.Value, Discount.DiscountPrice(tourViewModel.Price, customer.Discount));
-                return RedirectToAction("/Index");
+                if (realNumberOfPeople == null)
+                    ModelState.AddModelError("realNumberOfPeople", "Please enter valid number of people");
+                else
+                    if (realNumberOfPeople > tourViewModel.MaxNumberOfPeople)
+                    ModelState.AddModelError("realNumberOfPeople", "Please enter valid number of people");
+                if (ModelState.IsValid)
+                {
+                    var tourDto = MappingViewModel.MapTourDTO(tourViewModel);
+                    int cost = Discount.DiscountPrice(tourViewModel.Price, customer.Discount); 
+                    _customerService.BuyTour(tourDto, userId, realNumberOfPeople.Value, cost) ;
+                    SLogger.InfoToFile($"Customer {customer.Id} order tour {tourViewModel.Id} by price {cost}");
+                    var messageInfo = new MessageViewModel()
+                    {
+                        Status = "success",
+                        Info = "Tour ordered"
+                    };
+                    return RedirectToAction("Index", messageInfo);
+                }
+                else
+                {
+                    ViewBag.PriceForCustomer = Discount.DiscountPrice(tourViewModel.Price, customer.Discount);
+                    return View(tourViewModel);
+                }
             }
             else
             {
@@ -139,7 +171,13 @@ namespace TourAgency.Web.Controllers
                     customer.Name = name;
                     customer.Surname = surname;
                     _customerService.ChangePersonalInformation(customer);
-                    return RedirectToAction("/PersonalArea");
+                    SLogger.InfoToFile($"Customer {customer.Id} changed name to {name} {surname}");
+                    var messageInfo = new MessageViewModel()
+                    {
+                        Status = "success",
+                        Info = "Changed information"
+                    };
+                    return RedirectToAction("Index", messageInfo);
                 }
                 else
                 {

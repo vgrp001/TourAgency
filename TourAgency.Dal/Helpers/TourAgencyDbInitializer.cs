@@ -119,7 +119,7 @@ namespace TourAgency.Dal.Helpers
             var customer6 = new Customer() { Id = 1, Name = "Roman", Surname = "Patterson", UserId = customerUser6.Id, User = customerUser6, IsBlock = false, Discount = 0, MaxDiscount = 50, StepDiscount = 5, };
             var customer7 = new Customer() { Id = 1, Name = "Neil", Surname = "Thomas", UserId = customerUser7.Id, User = customerUser7, IsBlock = false, Discount = 0, MaxDiscount = 50, StepDiscount = 5, };
             var customer8 = new Customer() { Id = 1, Name = "Graham", Surname = "Ward", UserId = customerUser8.Id, User = customerUser8, IsBlock = false, Discount = 0, MaxDiscount = 50, StepDiscount = 5, };
-            var customer9 = new Customer() { Id = 1, Name = "Jameson", Surname = "Hayes", UserId = customerUser9.Id, User = customerUser8, IsBlock = false, Discount = 0, MaxDiscount = 50, StepDiscount = 5, };
+            var customer9 = new Customer() { Id = 1, Name = "Jameson", Surname = "Hayes", UserId = customerUser9.Id, User = customerUser9, IsBlock = false, Discount = 0, MaxDiscount = 50, StepDiscount = 5, };
 
             db.Customers.Add(customer1);
             db.Customers.Add(customer2);

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,8 +20,13 @@ namespace TourAgency.Web.Controllers
         {
             _adminService = administrator;
         }
-        public ActionResult Index()
+        public ActionResult Index(MessageViewModel message)
         {
+            if (!string.IsNullOrEmpty(message.Status) && !string.IsNullOrEmpty(message.Info))
+            {
+                ViewData["message"] = message.Info;
+                ViewData["status"] = message.Status;
+            }
             return View();
         }
         public ActionResult CreateNewTour(string startOfTour, string endOfTour,
@@ -68,7 +74,13 @@ namespace TourAgency.Web.Controllers
                     };
                     var newTourDTO = MappingViewModel.MapTourDTO(newTour);
                     _adminService.CreateTour(newTourDTO);
-                    return RedirectToAction("/Index");
+                    SLogger.InfoToFile($"Admin create a new tour");
+                    var messageInfo = new MessageViewModel()
+                    {
+                        Status = "success",
+                        Info = "Tour created"
+                    };
+                    return RedirectToAction("Index", messageInfo);
                 }
                 else
                 {
@@ -87,7 +99,13 @@ namespace TourAgency.Web.Controllers
             if (Request.HttpMethod == "POST")
             {
                 _adminService.DeleteTour(id);
-                return View("Index");
+                SLogger.InfoToFile($"Admin delete tour id: {id}");
+                var messageInfo = new MessageViewModel()
+                {
+                    Status = "success",
+                    Info = "Tour deleted"
+                };
+                return RedirectToAction("Index", messageInfo);
             }
             else
             {
@@ -115,12 +133,15 @@ namespace TourAgency.Web.Controllers
                 if (customer.IsBlock)
                 {
                     _adminService.UnlockCustomer(id.Value);
+                    SLogger.InfoToFile($"Admin unlock customer id: {id.Value}");
                 }
                 else
                 {
                     _adminService.BlockCustomer(id.Value);
+                    SLogger.InfoToFile($"Admin block customer id: {id.Value}");
                 }
-                return RedirectToAction("/Index");
+                return RedirectToAction("Index", "Home");
+
             }
             var customers = _adminService.GetAllCustomers();
             var customersViewModel = MappingViewModel.MapCustomerListViewModel(customers);
@@ -130,31 +151,30 @@ namespace TourAgency.Web.Controllers
         {
             var managers = _adminService.GetAllManagers();
             var managersViewModel = MappingViewModel.MapManagerListViewModel(managers);
-            if (Request.HttpMethod == "POST")
+            if (id != null)
             {
-                if (id != null)
+                var manager = _adminService.GetManagerById(id.Value);
+                if (manager == null)
                 {
-                    var manager = _adminService.GetManagerById(id.Value);
-                    if (manager == null)
-                    {
-                        return HttpNotFound();
-                    }
-                    if (manager.IsBlock)
-                    {
-                        _adminService.UnlockManager(id.Value);
-                    }
-                    else
-                    {
-                        _adminService.BlockManager(id.Value);
-                    }
-                    return RedirectToAction("/Index");
+                    return HttpNotFound();
                 }
-                return View(managersViewModel);
+                if (manager.IsBlock)
+                {
+                    _adminService.UnlockManager(id.Value);
+                    SLogger.InfoToFile($"Admin unlock manager id: {id.Value}");
+                }
+                else
+                {
+                    _adminService.BlockManager(id.Value);
+                    SLogger.InfoToFile($"Admin block manager id: {id.Value}");
+                }
+                return RedirectToAction("Index", "Home");
             }
             else
             {
                 return View(managersViewModel);
             }
+
         }
         protected override void Dispose(bool disposing)
         {

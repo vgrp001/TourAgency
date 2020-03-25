@@ -11,6 +11,7 @@ namespace TourAgency.Web
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js",
                         "~/Scripts/bootstrap-datepicker.min.js",
+                        "~/Scripts/jquery.magnific-popup.min.js",
                          "~/Scripts/script.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
@@ -26,8 +27,9 @@ namespace TourAgency.Web
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css",
-                      "~/Content/bootstrap-datepicker3.min.css"));
+                      "~/Content/bootstrap-datepicker3.min.css",
+                      "~/Content/magnific-popup.css",
+                      "~/Content/Site.css"));
         }
     }
 }

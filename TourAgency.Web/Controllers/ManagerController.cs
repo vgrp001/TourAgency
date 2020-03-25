@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -23,22 +24,27 @@ namespace TourAgency.Web.Controllers
         {
             _managerService = manager;
         }
-        public ActionResult Index()
+        public ActionResult Index(MessageViewModel message)
         {
+            if (!string.IsNullOrEmpty(message.Status) && !string.IsNullOrEmpty(message.Info))
+            {
+                ViewData["message"] = message.Info;
+                ViewData["status"] = message.Status;
+            }
             return View();
         }
         [HttpGet]
         public ActionResult InfoTourSelect(int page = 1)
         {
 
-            int pageSize = 3;
+            int pageSize = 5;
             var activeTours = _managerService.GetActiveTours();
             var activeToursViewModel = MappingViewModel.MapTourListViewModel(activeTours);
 
             var activeToursPerPages = activeToursViewModel.Skip((page - 1) * pageSize).Take(pageSize);
 
             var pageInfo = new PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = activeToursViewModel.Count };
-            var ivm = new TourPaginViewModel { PageInfo = pageInfo, Tours = activeToursPerPages };
+            var ivm = new TourPaginViewModel { PageInfo = pageInfo, Tours = activeToursPerPages.ToList() };
             return View(ivm);
         }
         public ActionResult UpdateTour(int id, string startOfTour, string endOfTour,
@@ -107,7 +113,13 @@ namespace TourAgency.Web.Controllers
                     {
                         var updateTour = MappingViewModel.MapTourDTO(tour);
                         _managerService.UpdateTour(updateTour);
-                        return View("Index");
+                        SLogger.InfoToFile($"Manager updated tour id: {updateTour.Id}");
+                        var messageInfo = new MessageViewModel()
+                        {
+                            Status = "success",
+                            Info = "Tour updated"
+                        };
+                        return RedirectToAction("Index", messageInfo);
                     }
                     else
                     {
@@ -153,10 +165,11 @@ namespace TourAgency.Web.Controllers
                             registeredToursViewModel[i].TypeOfStatusId = typeOfStatusId[i].Value;
                             var updateTour = MappingViewModel.MapTourCustomerDTO(registeredToursViewModel[i]);
                             _managerService.UpdateTourCustomer(updateTour);
+                            SLogger.InfoToFile($"Manager update status tour id: {updateTour.Id}");
                         }
                     }
                 }
-                return View("Index");
+                return RedirectToAction("Index", "Home");
             }
             else
             {
@@ -169,9 +182,7 @@ namespace TourAgency.Web.Controllers
             int pageSize = 6;
             var customers = _managerService.GetAllCustomers();
             var customersViewModel = MappingViewModel.MapCustomerListViewModel(customers);
-
             var customersPerPages = customersViewModel.Skip((page - 1) * pageSize).Take(pageSize);
-
             var pageInfo = new PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = customersViewModel.Count };
             var ivm = new CustomerPaginViewModel { PageInfo = pageInfo, Customers = customersPerPages };
             return View(ivm);
@@ -182,11 +193,31 @@ namespace TourAgency.Web.Controllers
             var customerViewModel = MappingViewModel.MapCustomerViewModel(customer);
             if (Request.HttpMethod == "POST")
             {
-                customer.StepDiscount = stepDiscount.Value;
-                customer.MaxDiscount = maxDiscount.Value;
-
-                _managerService.ChangeDiscountCustomer(customer);
-                return View("Index");
+                if (maxDiscount == null)
+                {
+                    ModelState.AddModelError("maxDiscount", "Please enter max discount");
+                }
+                if (stepDiscount == null)
+                {
+                    ModelState.AddModelError("stepDiscount", "Please enter step discount");
+                }
+                if (ModelState.IsValid)
+                {
+                    customer.StepDiscount = stepDiscount.Value;
+                    customer.MaxDiscount = maxDiscount.Value;
+                    _managerService.ChangeDiscountCustomer(customer);
+                    SLogger.InfoToFile($"Manager change discount customer id: {customer.Id}");
+                    var messageInfo = new MessageViewModel()
+                    {
+                        Status = "success",
+                        Info = $"Changed discount for {customer.Name}"
+                    };
+                    return RedirectToAction("Index", messageInfo);
+                }
+                else
+                {
+                    return View(customerViewModel);
+                }
             }
             else
             {

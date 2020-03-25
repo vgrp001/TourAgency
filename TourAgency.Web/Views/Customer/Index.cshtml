@@ -3,62 +3,40 @@
 @{
     ViewBag.Title = "Index";
 }
-
-
-@Html.Partial("~/Views/Home/Index.cshtml")
-
-
-@Html.ActionLink(linkText: "See tour catalog", actionName: "TourСatalog",
-    controllerName: "Customer", htmlAttributes: new { @class = "btn btn-primary" }, routeValues: null)
-
-@Html.ActionLink(linkText: "Personal Area", actionName: "PersonalArea",
-    controllerName: "Customer", htmlAttributes: new { @class = "btn btn-primary" }, routeValues: null)
-
-
-
-
-@using (Html.BeginForm("OrderTour", "Customer", FormMethod.Post))
-{
-    <h2>Hot tours</h2>
+<div class="container">
     <br />
-    <div class="container d-flex justify-content-around">
-        @foreach (var tour in Model)
-        {
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    @Html.DisplayNameFor(model => model.Price)
-                    <text>: </text>
-                    @Html.DisplayFor(modelItem => tour.Price)
-                    <br />
-                    @Html.DisplayNameFor(model => model.MaxNumberOfPeople)
-                    <text>: </text>
-                    @Html.DisplayFor(modelItem => tour.MaxNumberOfPeople)
-                    <br />
-                    @Html.DisplayNameFor(model => model.StartOfTour)
-                    <text>: </text>
-                    @Html.DisplayFor(modelItem => tour.StartOfTour)
-                    <br />
-                    @Html.DisplayNameFor(model => model.EndOfTour)
-                    <text>: </text>
-                    @Html.DisplayFor(modelItem => tour.EndOfTour)
-                    <br />
-                    @Html.DisplayNameFor(model => model.City)
-                    <text>: </text>
-                    @Html.DisplayFor(modelItem => tour.City.NameCity)
-                    <br />
-                    @Html.DisplayNameFor(model => model.TypeOfTour)
-                    <text>: </text>
-                    @Html.DisplayFor(modelItem => tour.TypeOfTour.Type)
-                    <br />
-                    @Html.DisplayNameFor(model => model.NumberOfOrders)
-                    <text>: </text>
-                    @Html.DisplayFor(modelItem => tour.NumberOfOrders)
-                    <br />
-                    @Html.ActionLink("Order Tour", "OrderTour", new { id = tour.Id }, new { @class = "btn btn-success w-50 d-block mx-auto" })
+    <br />
+    <h2 class="text-center">Hot tours</h2>
+    @using (Html.BeginForm("OrderTour", "Customer", FormMethod.Post))
+    {
+        <div class="container-fluid d-flex flex-wrap">
+            @foreach (var tour in Model)
+            {
+                <div class="card mr-3 ml-3 mb-3 mt-3 bg-light" style="width: 18rem;">
+                    <div class="card-body text-center">
+                        <p>Price: @tour.Price</p>
+                        <p>Max people: @tour.MaxNumberOfPeople</p>
+                        <p>Start: @Convert.ToString(string.Format("{0:dd/MM/yyyy}", tour.StartOfTour))</p>
+                        <p>End: @Convert.ToString(string.Format("{0:dd/MM/yyyy}", tour.EndOfTour))</p>
+                        <p>City: @tour.City.NameCity</p>
+                        <p>Type: @tour.TypeOfTour.Type</p>
+                        @Html.ActionLink("Order Tour", "OrderTour", new { id = tour.Id }, new { @class = "btn btn-success w-50 d-block mx-auto" })
+                    </div>
                 </div>
-            </div>
-        }
-    </div>
-    <hr />
-}
+            }
+        </div>
+    }
+</div>
 
+<script type="text/javascript">
+    $(document).ready(function () {
+        {
+            toastr.options.positionClass = 'toast-bottom-left';
+              if ('@ViewData["status"]' == "success")
+              {
+                    toastr.success('@ViewData["message"]');
+              }
+              else { }
+        }
+        });
+</script> 

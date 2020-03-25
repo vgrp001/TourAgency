@@ -10,6 +10,9 @@ using System.Web.Routing;
 using TourAgency.Web.Ioc;
 using Ninject.Web.Mvc;
 using TourAgency.Bll.Infrastructure;
+using System.Web.Hosting;
+using Serilog;
+using TourAgency.Web.Helpers;
 
 namespace TourAgency.Web
 {
@@ -21,9 +24,7 @@ namespace TourAgency.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-
-
-            // внедрение зависимостей
+            SLogger.StartLog();
             NinjectModule orderModule = new TourAgencyModule();
             NinjectModule serviceModule = new ServiceModule("DefaultConnection");
             var kernel = new StandardKernel(orderModule, serviceModule);

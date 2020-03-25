@@ -7,7 +7,7 @@ namespace TourAgency.Web.Models.Paginations
 {
     public class TourPaginViewModel
     {
-        public IEnumerable<TourViewModel> Tours { get; set; }
+        public List<TourViewModel> Tours { get; set; }
         public PageInfo PageInfo { get; set; }
     }
 }

@@ -186,11 +186,17 @@ namespace TourAgency.Web.Controllers
                         };
                         var managerDto = MappingViewModel.MapManagerDTO(managerViewModel);
                         _adminService.RegisterManager(managerDto);
-
                         return RedirectToAction("Index", "Home");
                     }
+                    else
+                    {
+                        return View();
+                    }
                 }
-                return RedirectToAction("Index", "Home");
+                else
+                {
+                    return View();
+                }
             }
             else
             {

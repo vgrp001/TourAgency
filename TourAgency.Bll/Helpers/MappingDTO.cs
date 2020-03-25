@@ -42,7 +42,7 @@ namespace TourAgency.Bll.Helpers
         {
             var configuration = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<ManagerDTO, Manager>()
+                cfg.CreateMap<Manager, ManagerDTO>()
                 .ForMember(dest => dest.User, opt => opt.Ignore());
             });
             var mapper = configuration.CreateMapper();

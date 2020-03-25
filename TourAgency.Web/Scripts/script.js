@@ -9,9 +9,27 @@
         todayHighlight: true,
         startDate: today,
         autoclose: true,
+        orientation: 'top left'
     };
     date_input.datepicker(options);
 })
+
+$(document).ready(function () {
+    $('.popup-link').magnificPopup({
+        type: 'inline',
+        midClick: true
+    });
+    $(document).on('click', '.popup-ok', function (e) {
+        e.preventDefault();
+        $.magnificPopup.close();
+        document.getElementById('Form').submit();
+    });
+    $(document).on('click', '.popup-no', function (e) {
+        e.preventDefault();
+        $.magnificPopup.close();
+        document.getElementById('Close').click();
+    });
+});
 
 $(document).ready(function () {
     setInterval(window.onload = function () {
@@ -25,3 +43,4 @@ $(document).ready(function () {
         }
     });
 })
+

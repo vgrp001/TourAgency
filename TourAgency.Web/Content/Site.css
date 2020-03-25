@@ -24,9 +24,20 @@ textarea {
 }
 
 
+
+.white-popup {
+    position: relative;
+    background: #ffffff;
+    padding: 20px;
+    width: auto;
+    max-width: 500px;
+    margin: 20px auto;
+}
+
+
 img {
     padding: 3px;
-    transition: transform .2s; 
+    transition: transform .2s;
     position: center;
     width: 250px;
     height: 250px;

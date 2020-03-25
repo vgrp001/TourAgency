@@ -23,5 +23,9 @@ namespace TourAgency.Web.Controllers
             Response.StatusCode = 403;
             return View();
         }
+        public ActionResult Blocked()
+        {
+            return View();
+        }
     }
 }

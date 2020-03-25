@@ -1,0 +1,79 @@
+2020-03-19 01:32:14.219 +02:00 [INF] Logger On
+2020-03-19 01:56:41.542 +02:00 [INF] Admin create a new tour
+2020-03-19 01:57:31.882 +02:00 [INF] Admin create a new tour
+2020-03-19 02:14:17.886 +02:00 [INF] Logger On
+2020-03-19 02:15:59.753 +02:00 [INF] Admin create a new tour
+2020-03-19 02:17:50.698 +02:00 [INF] Logger On
+2020-03-19 02:18:41.145 +02:00 [INF] Admin create a new tour
+2020-03-19 02:20:16.585 +02:00 [INF] Admin create a new tour
+2020-03-19 02:21:51.091 +02:00 [INF] Admin create a new tour
+2020-03-19 02:22:55.643 +02:00 [INF] Logger On
+2020-03-19 02:23:31.310 +02:00 [INF] Admin create a new tour
+2020-03-19 02:26:32.347 +02:00 [INF] Admin create a new tour
+2020-03-19 03:23:53.577 +02:00 [INF] Logger On
+2020-03-19 03:35:54.269 +02:00 [INF] Logger On
+2020-03-19 03:50:27.598 +02:00 [INF] Logger On
+2020-03-19 03:52:26.543 +02:00 [INF] Admin create a new tour
+2020-03-19 14:51:51.636 +02:00 [INF] Logger On
+2020-03-19 15:26:41.128 +02:00 [INF] Logger On
+2020-03-19 15:40:34.846 +02:00 [INF] Logger On
+2020-03-21 00:10:40.051 +02:00 [INF] Logger On
+2020-03-21 02:57:40.651 +02:00 [INF] Logger On
+2020-03-21 03:02:29.701 +02:00 [INF] Logger On
+2020-03-21 03:03:17.347 +02:00 [INF] Admin create a new tour
+2020-03-21 21:24:48.753 +02:00 [INF] Logger On
+2020-03-21 21:26:38.687 +02:00 [INF] Admin create a new tour
+2020-03-21 21:33:12.246 +02:00 [INF] Admin create a new tour
+2020-03-21 22:08:20.370 +02:00 [INF] Logger On
+2020-03-21 22:09:34.398 +02:00 [INF] Admin create a new tour
+2020-03-21 22:10:14.214 +02:00 [INF] Admin delete tour id: 1
+2020-03-21 22:12:02.977 +02:00 [INF] Manager update tour id: 2
+2020-03-21 22:12:53.947 +02:00 [INF] Manager update tour id: 5
+2020-03-21 22:14:55.363 +02:00 [INF] Manager update tour id: 5
+2020-03-21 22:16:36.782 +02:00 [INF] Logger On
+2020-03-21 22:17:14.161 +02:00 [INF] Manager updated tour id: 2
+2020-03-21 22:17:36.721 +02:00 [INF] Manager change discount customer id: 2
+2020-03-21 22:23:05.132 +02:00 [INF] Logger On
+2020-03-21 22:24:03.896 +02:00 [INF] Customer 1 order tour 4 by price 3784
+2020-03-22 00:07:55.156 +02:00 [INF] Logger On
+2020-03-22 00:39:50.737 +02:00 [INF] Logger On
+2020-03-22 01:01:51.057 +02:00 [INF] Logger On
+2020-03-22 01:17:26.847 +02:00 [INF] Admin create a new tour
+2020-03-22 03:29:56.467 +02:00 [INF] Logger On
+2020-03-22 03:44:16.458 +02:00 [INF] Logger On
+2020-03-22 03:54:50.618 +02:00 [INF] Admin create a new tour
+2020-03-24 17:13:33.943 +02:00 [INF] Logger On
+2020-03-24 17:35:04.758 +02:00 [INF] Logger On
+2020-03-24 17:37:42.160 +02:00 [INF] Logger On
+2020-03-24 19:12:15.354 +02:00 [INF] Logger On
+2020-03-24 19:13:14.103 +02:00 [INF] Admin block manager id: 1
+2020-03-24 19:13:18.059 +02:00 [INF] Admin unlock manager id: 1
+2020-03-24 19:14:14.990 +02:00 [INF] Admin block manager id: 1
+2020-03-24 19:14:43.228 +02:00 [INF] Admin unlock manager id: 1
+2020-03-24 19:14:50.988 +02:00 [INF] Admin block manager id: 1
+2020-03-24 20:46:35.420 +02:00 [INF] Admin unlock manager id: 1
+2020-03-24 20:53:22.050 +02:00 [INF] Admin delete tour id: 1
+2020-03-24 20:54:14.399 +02:00 [INF] Admin delete tour id: 2
+2020-03-24 21:56:36.690 +02:00 [INF] Admin delete tour id: 3
+2020-03-24 22:18:28.738 +02:00 [INF] Manager update status tour id: 1
+2020-03-24 22:24:04.019 +02:00 [INF] Admin block customer id: 2
+2020-03-24 22:24:06.879 +02:00 [INF] Admin unlock customer id: 2
+2020-03-24 22:27:23.760 +02:00 [INF] Logger On
+2020-03-24 22:28:22.649 +02:00 [INF] Admin block customer id: 1
+2020-03-24 22:28:27.349 +02:00 [INF] Admin unlock customer id: 1
+2020-03-24 22:28:43.990 +02:00 [INF] Admin block customer id: 1
+2020-03-24 22:28:48.126 +02:00 [INF] Admin unlock customer id: 1
+2020-03-24 22:29:46.287 +02:00 [INF] Admin block customer id: 1
+2020-03-24 22:29:49.290 +02:00 [INF] Admin unlock customer id: 1
+2020-03-24 22:32:43.298 +02:00 [INF] Admin block manager id: 1
+2020-03-24 22:32:47.488 +02:00 [INF] Admin unlock manager id: 1
+2020-03-24 22:34:58.082 +02:00 [INF] Admin block customer id: 2
+2020-03-24 22:35:01.371 +02:00 [INF] Admin unlock customer id: 2
+2020-03-24 22:35:05.100 +02:00 [INF] Admin block manager id: 2
+2020-03-24 22:35:07.374 +02:00 [INF] Admin unlock manager id: 2
+2020-03-24 23:02:17.189 +02:00 [INF] Customer 1 changed name to dfsdfsdfs fsdfsdfsdfsdf
+2020-03-24 23:03:16.428 +02:00 [INF] Customer 1 changed name to dsfsdf dsfsd
+2020-03-24 23:06:25.239 +02:00 [INF] Admin delete tour id: 1
+2020-03-24 23:10:06.573 +02:00 [INF] Logger On
+2020-03-24 23:30:52.809 +02:00 [INF] Logger On
+2020-03-24 23:48:24.048 +02:00 [INF] Logger On
