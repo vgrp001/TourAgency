@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNet.Identity;
+﻿ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
@@ -215,6 +215,7 @@ namespace TourAgency.Dal.Helpers
                 TypeOfTourId = typeOfTourRelax.Id,
                 IsDelete = false,
                 NumberOfOrders = 3,
+                ImagePath = "Kyiv.jpg"
             };
             var tour2 = new Tour()
             {
@@ -232,6 +233,7 @@ namespace TourAgency.Dal.Helpers
                 TypeOfTourId = typeOfTourShopping.Id,
                 IsDelete = false,
                 NumberOfOrders = 2,
+                ImagePath = "Rome.jpg"
             };
             var tour3 = new Tour()
             {
@@ -248,7 +250,8 @@ namespace TourAgency.Dal.Helpers
                 TypeOfTour = typeOfTourExcursion,
                 TypeOfTourId = typeOfTourExcursion.Id,
                 IsDelete = false,
-                NumberOfOrders = 3
+                NumberOfOrders = 3,
+                ImagePath = "London.jpg"
             };
             var tour4 = new Tour()
             {
@@ -266,6 +269,7 @@ namespace TourAgency.Dal.Helpers
                 TypeOfTourId = typeOfTourRelax.Id,
                 IsDelete = false,
                 NumberOfOrders = 5,
+                ImagePath = "Berlin.jpg"
             };
             db.Tours.Add(tour1);
             db.Tours.Add(tour2);
@@ -299,6 +303,8 @@ namespace TourAgency.Dal.Helpers
             db.TourCustomers.Add(tourCustomer1);
             db.TourCustomers.Add(tourCustomer2);
             db.SaveChanges();
+
+
         }
     }
 }

@@ -71,9 +71,12 @@
         </div>
     }
     <br />
-    <nav aria-label="...">
-        <ul class="pagination pagination-lg">
-            @Html.PageLinks(Model.PageInfo, x => Url.Action("UpdateCustomerInformation", new { page = x }))
-        </ul>
-    </nav>
+    @if (Model.PageInfo.TotalPages != 1)
+    {
+        <nav aria-label="...">
+            <ul class="pagination pagination-lg">
+                @Html.PageLinks(Model.PageInfo, x => Url.Action("UpdateCustomerInformation", new { page = x }))
+            </ul>
+        </nav>
+    }
 </div>

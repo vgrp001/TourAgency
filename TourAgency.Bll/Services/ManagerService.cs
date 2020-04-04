@@ -19,12 +19,17 @@ namespace TourAgency.Bll.Services
         {
             _dataBase = dataBase;
         }
+        public void RegisterManager(ManagerDTO managerDTO)
+        {
+            var manager = MappingDTO.MapManager(managerDTO);
+            _dataBase.Managers.Register(manager);
+            _dataBase.Save();
+        }
         public void UpdateTour(TourDTO tourDTO)
         {
             var tour = MappingDTO.MapTour(tourDTO);
             _dataBase.Tours.UpdateInfo(tour);
             _dataBase.Save();
-            //throw new ValidationException("Failed to edit tour", "null error");
         }
         public void BlockCustomer(int id)
         {
@@ -94,6 +99,16 @@ namespace TourAgency.Bll.Services
             else
                 throw new ValidationException("Failed to change discount customer", "null error");
             _dataBase.Save();
+        }
+
+        public ManagerDTO GetManagerByIdentityUserId(string userId)
+        {
+            var managerId = _dataBase.Managers.GetCManagerIdByIdentityUserId(userId);
+            if (managerId == -1)
+                return null;
+            var manager = _dataBase.Managers.Get(managerId);
+            var managerDto = MappingDTO.MapManagerDTO(manager);
+            return managerDto;
         }
     }
 }

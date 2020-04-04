@@ -26,6 +26,7 @@ namespace TourAgency.Web.Models
         [Required(ErrorMessage = "Enter the date start of tour")]
         public DateTime StartOfTour { get; set; }
         public bool IsDelete { get; set; }
+        public string ImagePath { get; set; }
 
         [Required(ErrorMessage = "Enter a city")]
         public int CityId { get; set; }

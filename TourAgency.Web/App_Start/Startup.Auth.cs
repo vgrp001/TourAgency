@@ -58,11 +58,11 @@ namespace TourAgency.Web
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "517938910949-8m3fv5jp3ndji563d11hqrq3aa4udolu.apps.googleusercontent.com",
+                ClientSecret = "TLV5tL1-jICb4tT-D2XAb5xU"
+            });
         }
     }
 }

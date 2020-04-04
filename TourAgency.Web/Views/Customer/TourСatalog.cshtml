@@ -18,23 +18,23 @@
             </select>
             <br />
             @Html.RadioButton("sort", 1, true, htmlAttributes: new { @onchange = "document.getElementById('Form').submit();" })
-            <p>Price</p>
+            <b>Price</b>
             <br />
             @Html.RadioButton("sort", 2, htmlAttributes: new { @onchange = "document.getElementById('Form').submit();" })
-            <p>Type of tour</p>
+            <b>Type of tour</b>
             <br />
             @Html.RadioButton("sort", 3, htmlAttributes: new { @onchange = "document.getElementById('Form').submit();" })
-            <p>Max numder of people</p>
+            <b>Max number of people</b>
             <br />
             @Html.RadioButton("sort", 4, htmlAttributes: new { @onchange = "document.getElementById('Form').submit();" })
-            <p>Hotel stars</p>
+            <b>Hotel stars</b>
             <br />
             @Html.RadioButton("sort", 5, htmlAttributes: new { @onchange = "document.getElementById('Form').submit();" })
-            <p>Start of tour</p>
+            <b>Start of tour</b>
         }
     </div>
 </div>
-<div class="container-fluid" style="padding-left:300px; margin:0; position: static; width: 100%;">
+<div class="container-fluid" style="padding-left:320px; margin:0; position: static; width: 100%;">
     <br />
     <br />
     <h2 class="text-center">All tours</h2>
@@ -44,25 +44,30 @@
             @foreach (var item in Model.Tours)
             {
                 <div class="card mr-3 ml-3 mb-3 mt-3" style="width: 18rem;">
+                    <div style="position:relative;">
+                        @if (item.IsHot)
+                        {
+                            <div style="position:absolute; margin-left:15px;" class="area">H O T</div>
+                        }
+                        <img class="card-img-top" src="@Url.Content("~/Content/Image/" + item.ImagePath)" />
+                    </div>
                     <div class="card-body">
-                        <p>Price: @item.Price</p>
-                        <br />
-                        <p>NumberOfOrders: @item.NumberOfOrders</p>
-                        <br />
-                        <p>StartOfTour: @item.StartOfTour</p>
-                        <br />
-                        <p>EndOfTour: @item.EndOfTour</p>
-                        <br />
-                        <p>City: @item.City.NameCity</p>
-                        <br />
-                        <p>TypeOfTour: @item.TypeOfTour.Type</p>
-                        <br />
+                        <h6 class="card-text">Price: @item.Price</h6>
+                        <h6 class="card-text">Type of tour: @item.TypeOfTour.Type</h6>
+                        <h6 class="card-text">Max number of people: @item.MaxNumberOfPeople</h6>
+                        <h6 class="card-text">Hotel stars: @item.TypeOfHotel.Type</h6>
+                        <h6 class="card-text">Start: @item.StartOfTour</h6>
+                        <h6 class="card-text">Number of orders: @item.NumberOfOrders</h6>
+                        <h6 class="card-text">City: @item.City.NameCity</h6>
                         @Html.ActionLink("Order Tour", "OrderTour", new { id = item.Id }, new { @class = "btn btn-success w-50 d-block mx-auto" })
                     </div>
                 </div>
             }
         </div>
         <br />
+    }
+    @if (Model.PageInfo.TotalPages != 1)
+    {
         <div class="text-center">
             <nav aria-label="...">
                 <ul class="pagination pagination-lg">

@@ -2,5 +2,6 @@
 {
     public interface IManagerRepository
     {
+        int GetCManagerIdByIdentityUserId(string userId);
     }
 }

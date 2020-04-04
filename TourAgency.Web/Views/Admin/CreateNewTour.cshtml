@@ -13,7 +13,7 @@
             Create New Tour
         </div>
         <div class="card-body">
-            @using (Html.BeginForm("CreateNewTour", "Admin", FormMethod.Post, htmlAttributes: new { @id = "Form" }))
+            @using (Html.BeginForm("CreateNewTour", "Admin", FormMethod.Post, htmlAttributes: new { @id = "Form", enctype = "multipart/form-data" }))
             {
                 @Html.ValidationSummary(false, "", htmlAttributes: new { @class = "text-danger" })
                 <div class="row">
@@ -55,6 +55,7 @@
                         <b>Price:</b><br />
                         <input name="price" type="number" min="100" max="1000000" step="50" maxlength="7" autocomplete="off" class="form-control numInput">
                         <br />
+                        <input type="file" name="upload" /><br>
                     </div>
                 </div>
                 <a href="#popup" class="popup-link btn btn-success w-50">Create</a>

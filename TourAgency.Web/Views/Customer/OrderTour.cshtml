@@ -14,6 +14,7 @@
             @using (Html.BeginForm("OrderTour", "Customer", FormMethod.Post, htmlAttributes: new { @id = "Form" }))
             {
                 @Html.AntiForgeryToken()
+                <img src="@Url.Content("~/Content/Image/" + Model.ImagePath)" />
                 @Html.ValidationSummary(false, "", htmlAttributes: new { @class = "text-danger" })
                 @Html.HiddenFor(model => model.Id, htmlAttributes: new { @name = "id" })
                 <b>Type of tour:</b>

@@ -13,7 +13,7 @@ namespace TourAgency.Dal.Entities
         public DateTime EndOfTour { get; set; }
         public DateTime StartOfTour { get; set; }
         public bool IsDelete { get; set; }
-
+        public string ImagePath { get; set; }
 
         public int CityId { get; set; }
         public int TypeOfHotelId { get; set; }

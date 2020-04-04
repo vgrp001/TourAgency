@@ -12,18 +12,11 @@ namespace TourAgency.Bll.Services
 {
     public class AdminService : ManagerService, IAdminService
     {
-
         private readonly IUnitOfWork _dataBase;
         public AdminService(IUnitOfWork dataBase) : base(dataBase)
         {
             Log.Information("The time is {Now}", DateTime.Now); 
             _dataBase = dataBase;
-        }
-        public void RegisterManager(ManagerDTO managerDTO)
-        {
-            var manager = MappingDTO.MapManager(managerDTO);
-            _dataBase.Managers.Register(manager);
-            _dataBase.Save();
         }
         public void DeleteTour(int id)
         {

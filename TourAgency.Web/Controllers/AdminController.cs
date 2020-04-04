@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Serilog;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -30,7 +31,7 @@ namespace TourAgency.Web.Controllers
             return View();
         }
         public ActionResult CreateNewTour(string startOfTour, string endOfTour,
-    int? typeOfTourId, int? typeOfHotelsId, int? maxNumberOfPeople, int? price, int? cityId, int? numberOfOrders)
+    int? typeOfTourId, int? typeOfHotelsId, int? maxNumberOfPeople, int? price, int? cityId, int? numberOfOrders, HttpPostedFileBase upload)
         {
             if (Request.HttpMethod == "POST")
             {
@@ -45,6 +46,8 @@ namespace TourAgency.Web.Controllers
                     if (startOfTourDate > endOfTourDate)
                         ModelState.AddModelError("date", "Enter valid dates");
                 }
+                if (upload == null)
+                    ModelState.AddModelError("upload", "Please enter image");
                 if (typeOfTourId == null)
                     ModelState.AddModelError("typeOfTourId", "Please enter type of tour");
                 if (typeOfHotelsId == null)
@@ -71,7 +74,9 @@ namespace TourAgency.Web.Controllers
                         Price = price.Value,
                         CityId = cityId.Value,
                         IsHot = false,
+                        ImagePath = Path.GetFileName(upload.FileName)
                     };
+                    upload.SaveAs(Server.MapPath("~/Content/Image/" + newTour.ImagePath));
                     var newTourDTO = MappingViewModel.MapTourDTO(newTour);
                     _adminService.CreateTour(newTourDTO);
                     SLogger.InfoToFile($"Admin create a new tour");

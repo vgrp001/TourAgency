@@ -20,15 +20,15 @@ namespace TourAgency.Web.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-        private readonly IAdminService _adminService;
+        private readonly IManagerService _managerService;
         private readonly ICustomerService _customerService;
 
         public AccountController()
         {
         }
-        public AccountController(IAdminService administrator, ICustomerService customer)
+        public AccountController(IManagerService manager, ICustomerService customer)
         {
-            _adminService = administrator;
+            _managerService = manager;
             _customerService = customer;
         }
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
@@ -88,15 +88,27 @@ namespace TourAgency.Web.Controllers
             {
                 case SignInStatus.Success:
                     {
-                        string userId = SignInManager.AuthenticationManager
-                        .AuthenticationResponseGrant.Identity.GetUserId();
+                        string userId = SignInManager.AuthenticationManager.AuthenticationResponseGrant.Identity.GetUserId();
                         var customer = _customerService.GetCustomerByIdentityUserId(userId);
-                        if (customer != null)
+                        if (customer != null) {
                             if (customer.IsBlock)
                             {
                                 AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
                                 return RedirectPermanent("/Error/Blocked");
                             }
+                        }
+                        else
+                        {
+                            var manager = _managerService.GetManagerByIdentityUserId(userId);
+                            if(manager != null)
+                            {
+                                if (manager.IsBlock)
+                                {
+                                    AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+                                    return RedirectPermanent("/Error/Blocked");
+                                }
+                            }
+                        }
                         return RedirectToLocal(returnUrl);
                     }
                 case SignInStatus.LockedOut:
@@ -185,7 +197,7 @@ namespace TourAgency.Web.Controllers
                             Surname = yourSurname,
                         };
                         var managerDto = MappingViewModel.MapManagerDTO(managerViewModel);
-                        _adminService.RegisterManager(managerDto);
+                        _managerService.RegisterManager(managerDto);
                         return RedirectToAction("Index", "Home");
                     }
                     else
@@ -228,10 +240,6 @@ namespace TourAgency.Web.Controllers
 
                 if (result.Succeeded)
                 {
-                    if(UserManager.FindByName("pavel.vogorip@gmail.com").Roles.First().RoleId == "admin")
-                    {
-
-                    }
                     // Add role
                     UserManager.AddToRole(user.Id, "customer");
                     // Create customer
@@ -460,17 +468,35 @@ namespace TourAgency.Web.Controllers
                     return View("ExternalLoginFailure");
                 }
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user);
-                if (result.Succeeded)
+                var resultRe = await UserManager.CreateAsync(user);
+                if (resultRe.Succeeded)
                 {
-                    result = await UserManager.AddLoginAsync(user.Id, info.Login);
-                    if (result.Succeeded)
+                    // Add role
+                    UserManager.AddToRole(user.Id, "customer");
+                    // Create customer
+                    var customerViewModel = new CustomerViewModel()
+                    {
+                        UserId = user.Id,
+                        Discount = 0,
+                        MaxDiscount = 15,
+                        StepDiscount = 2,
+                        IsBlock = false,
+                        Name = "",
+                        Surname = "",
+                    };
+                    var customerDto = MappingViewModel.MapCustomerDTO(customerViewModel);
+                    _customerService.Register(customerDto);
+                }
+                if (resultRe.Succeeded)
+                {
+                    resultRe = await UserManager.AddLoginAsync(user.Id, info.Login);
+                    if (resultRe.Succeeded)
                     {
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                         return RedirectToLocal(returnUrl);
                     }
                 }
-                AddErrors(result);
+                AddErrors(resultRe);
             }
 
             ViewBag.ReturnUrl = returnUrl;
