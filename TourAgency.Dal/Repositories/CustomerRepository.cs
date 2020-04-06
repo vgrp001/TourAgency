@@ -17,6 +17,21 @@ namespace TourAgency.Dal.Repositories
                 return -1;
             return customer.Id;
         }
+
+        public void UpdateInfo(Customer model)
+        {
+            var customer = tourAgencyContext.Customers.Where(u => u.Id == model.Id).FirstOrDefault();
+            if(customer != null)
+            {
+                customer.IsBlock = model.IsBlock;
+                customer.Discount = model.Discount;
+                customer.MaxDiscount = model.MaxDiscount;
+                customer.StepDiscount = model.StepDiscount;
+                customer.UserId = model.UserId;
+                Update(customer);
+            }
+        }
+
         public void Register(Customer customer)
         {
             tourAgencyContext.Customers.Add(customer);

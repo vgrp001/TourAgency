@@ -7,6 +7,7 @@ using TourAgency.Bll.Services.Interfaces;
 using TourAgency.Dal.Entities;
 using TourAgency.Dal.UnitOfWork.Interfaces;
 using System.Collections.Generic;
+using TourAgency.Bll.BusinessModels;
 
 namespace TourAgency.Bll.Services
 {
@@ -71,6 +72,21 @@ namespace TourAgency.Bll.Services
                 customer.Surname = customerDto.Surname;
                 _dataBase.Customers.Update(customer);
             }
+            _dataBase.Save();
+        }
+
+        public void CancelTour(TourCustomerDTO tourCustomer)
+        {
+            _dataBase.TourCustomers.Delete(tourCustomer.Id);
+            _dataBase.Save();
+            var tourDto = tourCustomer.Tour;
+            tourDto.NumberOfOrders++;
+            var tour = MappingDTO.MapTour(tourDto);
+            _dataBase.Tours.UpdateInfo(tour);
+            var customerDto = tourCustomer.Customer;
+            customerDto.Discount = Discount.ReduceDiscount(customerDto.Discount);
+            var customer = MappingDTO.MapCustomer(customerDto);
+            _dataBase.Customers.UpdateInfo(customer);
             _dataBase.Save();
         }
     }

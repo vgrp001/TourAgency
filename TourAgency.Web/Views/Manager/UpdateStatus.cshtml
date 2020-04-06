@@ -37,8 +37,8 @@
                         <p>Price:  @tour.Tour.Price</p>
                         <p>Customer:  @tour.Customer.Name  @tour.Customer.Surname</p>
                         <p>Real number of people: @tour.RealNumberOfPeople</p>
-                        <p>Start: @tour.Tour.StartOfTour</p>
-                        <p>End: @tour.Tour.EndOfTour</p>
+                        <p>Start: @Convert.ToString(string.Format("{0:dd/MM/yyyy}", tour.Tour.StartOfTour))</p>
+                        <p>End: @Convert.ToString(string.Format("{0:dd/MM/yyyy}", tour.Tour.EndOfTour))</p>
                         <p>City: @tour.Tour.City.NameCity</p>
                         <p>Type of tour: @tour.Tour.TypeOfTour.Type</p>
                         <p>Type of status: @tour.TypeOfStatus.Type</p>

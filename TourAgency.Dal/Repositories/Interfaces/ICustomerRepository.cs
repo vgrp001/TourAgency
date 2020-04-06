@@ -6,5 +6,6 @@ namespace TourAgency.Dal.Repositories.Interfaces
     {
         void Register(Customer model);
         int GetCustomerIdByIdentityUserId(string userId);
+        void UpdateInfo(Customer model);
     }
 }

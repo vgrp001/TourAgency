@@ -30,19 +30,13 @@
                     <br />
                     <br />
                     @Html.ActionLink("Register as a new user", "Register", "Account", null, new { @class = "btn btn-primary" })
-                    <br />
-                    <br />
-                    @Html.ActionLink("Forgot your password?", "ForgotPassword", "Account", null, new { @class = "btn btn-warning" })
                 }
             </section>
         </div>
     </div>
-
-    <section id="socialLoginForm">
-        @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-    </section>
-
-    @section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
-    }
 </div>
+@Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

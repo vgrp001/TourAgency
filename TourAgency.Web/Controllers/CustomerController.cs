@@ -190,6 +190,24 @@ namespace TourAgency.Web.Controllers
             }
         }
 
+        public ActionResult TourCancellation(int? id)
+        {
+            var userId = User.Identity.GetUserId();
+            var customer = _customerService.GetCustomerByIdentityUserId(userId);
+            var tours = _customerService.GetTourCustomerByCustomerId(userId);
+            var toursViewModel = MappingViewModel.MapTourCustomerListViewModel(tours);
+            var tourCustomerViewModel = toursViewModel.Find(t => t.Id == id.Value);
+            var tourCustomer = MappingViewModel.MapTourCustomerDTO(tourCustomerViewModel);
+            _customerService.CancelTour(tourCustomer);
+            SLogger.InfoToFile($"Customer {customer.Id} сanceled the tour {tourCustomer.Id}");
+            var messageInfo = new MessageViewModel()
+            {
+                Status = "success",
+                Info = "Tour canceled -5 percent of the discount"
+            };
+            return RedirectToAction("Index", messageInfo);
+        }
+
         protected override void Dispose(bool disposing)
         {
             _customerService.Dispose();

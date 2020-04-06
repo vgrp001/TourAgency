@@ -9,6 +9,7 @@ using TourAgency.Bll.Infrastructure;
 using TourAgency.Bll.Services.Interfaces;
 using TourAgency.Dal.Entities;
 using TourAgency.Dal.UnitOfWork.Interfaces;
+using TourAgency.Bll.BusinessModels;
 
 namespace TourAgency.Bll.Services
 {
@@ -72,6 +73,15 @@ namespace TourAgency.Bll.Services
         }
         public void UpdateTourCustomer(TourCustomerDTO tourCustomerDTO)
         {
+            var typeOfStatusPaid = _dataBase.TypeOfStatuses.Get("Paid");
+            if (tourCustomerDTO.TypeOfStatusId == typeOfStatusPaid.Id)
+            {
+                var customerDto = tourCustomerDTO.Customer;
+                var customer = MappingDTO.MapCustomer(customerDto);
+                customer.Discount = Discount.AddDiscount(customer.Discount, customer.StepDiscount, customer.MaxDiscount);
+                _dataBase.Customers.UpdateInfo(customer);
+                _dataBase.Save();
+            }
             _dataBase.TourCustomers.SetStatus(tourCustomerDTO.Id, tourCustomerDTO.TypeOfStatusId);
             _dataBase.Save();
         }

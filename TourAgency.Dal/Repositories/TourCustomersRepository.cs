@@ -16,8 +16,8 @@ namespace TourAgency.Dal.Repositories
         }
         public void SetStatus(int id, int idStatus)
         {
-            TourCustomer tourCustomer = tourAgencyContext.TourCustomers.Find(id);
-            TypeOfStatus typeOfStatus = tourAgencyContext.TypeOfStatuses.Where(u => u.Id == idStatus).FirstOrDefault();
+            var tourCustomer = tourAgencyContext.TourCustomers.Find(id);
+            var typeOfStatus = tourAgencyContext.TypeOfStatuses.Where(u => u.Id == idStatus).FirstOrDefault();
             tourCustomer.TypeOfStatus = typeOfStatus;
             tourCustomer.TypeOfStatusId = typeOfStatus.Id;
             Update(tourCustomer);

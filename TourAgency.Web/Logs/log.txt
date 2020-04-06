@@ -122,3 +122,77 @@
 2020-04-04 03:10:44.102 +03:00 [INF] Logger On
 2020-04-04 03:11:29.236 +03:00 [INF] Logger On
 2020-04-04 03:18:44.395 +03:00 [INF] Logger On
+2020-04-04 20:57:16.338 +03:00 [INF] Logger On
+2020-04-04 21:32:55.050 +03:00 [INF] Logger On
+2020-04-04 23:07:33.645 +03:00 [INF] Logger On
+2020-04-04 23:18:01.378 +03:00 [INF] Logger On
+2020-04-04 23:22:04.567 +03:00 [INF] Logger On
+2020-04-04 23:25:14.899 +03:00 [INF] Logger On
+2020-04-04 23:28:27.955 +03:00 [INF] Customer 1 order tour 3 by price 6192
+2020-04-04 23:46:32.927 +03:00 [INF] Logger On
+2020-04-05 00:10:54.605 +03:00 [INF] Customer 1 order tour 3 by price 6192
+2020-04-05 00:11:21.760 +03:00 [INF] Customer 1 order tour 5 by price 3784
+2020-04-05 00:42:55.555 +03:00 [INF] Logger On
+2020-04-05 00:44:18.815 +03:00 [INF] Customer 1 order tour 5 by price 3784
+2020-04-05 00:44:47.091 +03:00 [INF] Customer 1 order tour 3 by price 6048
+2020-04-05 02:00:41.854 +03:00 [INF] Logger On
+2020-04-05 02:07:48.372 +03:00 [INF] Logger On
+2020-04-05 02:14:03.636 +03:00 [INF] Logger On
+2020-04-05 03:16:49.191 +03:00 [INF] Logger On
+2020-04-05 03:20:38.278 +03:00 [INF] Customer 1 сanceled the tour 1
+2020-04-05 03:33:54.337 +03:00 [INF] Logger On
+2020-04-05 03:36:04.164 +03:00 [INF] Customer 1 сanceled the tour 1
+2020-04-05 03:36:26.883 +03:00 [INF] Customer 1 order tour 5 by price 3784
+2020-04-05 03:36:38.290 +03:00 [INF] Customer 1 order tour 5 by price 3696
+2020-04-05 03:36:53.124 +03:00 [INF] Customer 1 сanceled the tour 3
+2020-04-05 03:36:58.991 +03:00 [INF] Customer 1 сanceled the tour 4
+2020-04-05 03:38:16.541 +03:00 [INF] Customer 1 сanceled the tour 2
+2020-04-05 03:38:48.982 +03:00 [INF] Customer 1 order tour 3 by price 5904
+2020-04-05 03:42:37.294 +03:00 [INF] Logger On
+2020-04-05 03:45:59.407 +03:00 [INF] Customer 1 сanceled the tour 2
+2020-04-05 03:46:08.819 +03:00 [INF] Customer 1 сanceled the tour 1
+2020-04-05 03:46:16.212 +03:00 [INF] Customer 1 order tour 3 by price 6912
+2020-04-05 03:46:22.876 +03:00 [INF] Customer 1 сanceled the tour 3
+2020-04-05 03:46:37.180 +03:00 [INF] Customer 1 order tour 3 by price 7128
+2020-04-05 03:46:42.777 +03:00 [INF] Customer 1 сanceled the tour 4
+2020-04-05 03:47:01.056 +03:00 [INF] Customer 1 order tour 3 by price 7200
+2020-04-06 17:08:33.339 +03:00 [INF] Logger On
+2020-04-06 17:13:57.305 +03:00 [INF] Logger On
+2020-04-06 17:25:32.472 +03:00 [INF] Logger On
+2020-04-06 17:30:25.666 +03:00 [INF] Logger On
+2020-04-06 17:40:21.557 +03:00 [INF] Logger On
+2020-04-06 17:49:27.305 +03:00 [INF] Logger On
+2020-04-06 18:23:29.400 +03:00 [INF] Logger On
+2020-04-06 18:30:22.927 +03:00 [INF] Logger On
+2020-04-06 18:38:00.388 +03:00 [INF] Logger On
+2020-04-06 20:12:05.190 +03:00 [INF] Logger On
+2020-04-06 20:13:34.145 +03:00 [INF] Customer 1 сanceled the tour 1
+2020-04-06 20:15:34.472 +03:00 [INF] Manager update status tour id: 2
+2020-04-06 20:17:03.404 +03:00 [INF] Manager update status tour id: 2
+2020-04-06 20:18:19.342 +03:00 [INF] Customer 1 order tour 3 by price 6552
+2020-04-06 20:35:40.901 +03:00 [INF] Logger On
+2020-04-06 20:37:53.665 +03:00 [INF] Customer 1 order tour 3 by price 6192
+2020-04-06 20:38:02.432 +03:00 [INF] Customer 1 order tour 3 by price 6192
+2020-04-06 20:38:10.059 +03:00 [INF] Customer 1 сanceled the tour 4
+2020-04-06 20:38:31.639 +03:00 [INF] Manager update status tour id: 2
+2020-04-06 20:39:28.343 +03:00 [INF] Logger On
+2020-04-06 20:39:57.103 +03:00 [INF] Manager update status tour id: 2
+2020-04-06 20:41:56.091 +03:00 [INF] Logger On
+2020-04-06 20:44:45.723 +03:00 [INF] Logger On
+2020-04-06 20:45:45.865 +03:00 [INF] Manager update status tour id: 2
+2020-04-06 20:46:34.588 +03:00 [INF] Customer 1 сanceled the tour 2
+2020-04-06 20:48:34.298 +03:00 [INF] Logger On
+2020-04-06 20:52:07.332 +03:00 [INF] Logger On
+2020-04-06 20:54:21.654 +03:00 [INF] Logger On
+2020-04-06 20:55:50.087 +03:00 [INF] Logger On
+2020-04-06 20:56:30.781 +03:00 [INF] Manager update status tour id: 2
+2020-04-06 23:32:15.172 +03:00 [INF] Logger On
+2020-04-07 00:56:02.602 +03:00 [INF] Logger On
+2020-04-07 01:13:52.570 +03:00 [INF] Logger On
+2020-04-07 01:22:14.246 +03:00 [INF] Logger On
+2020-04-07 01:28:34.525 +03:00 [INF] Logger On
+2020-04-07 01:30:34.117 +03:00 [INF] Logger On
+2020-04-07 01:34:25.393 +03:00 [INF] Admin block manager id: 1
+2020-04-07 01:34:41.179 +03:00 [INF] Admin unlock manager id: 1
+2020-04-07 01:35:34.879 +03:00 [INF] Manager update status tour id: 2
+2020-04-07 01:35:46.607 +03:00 [INF] Customer 1 сanceled the tour 1

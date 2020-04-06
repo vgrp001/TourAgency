@@ -177,6 +177,16 @@ namespace TourAgency.Web.Controllers
                 return View(registeredToursViewModel);
             }
         }
+
+        public ActionResult CustomerSearch(string fullName, int page = 1)
+        {
+            int pageSize = 6;
+            var customers = _managerService.GetAllCustomers().Where(c =>c.Name+" "+c.Surname  == fullName).ToList();
+            var customersViewModel = MappingViewModel.MapCustomerListViewModel(customers);
+            var pageInfo = new PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = customersViewModel.Count };
+            var ivm = new CustomerPaginViewModel { PageInfo = pageInfo, Customers = customersViewModel };
+            return View("UpdateCustomerInformation", ivm);
+        }
         public ActionResult UpdateCustomerInformation(int page = 1)
         {
             int pageSize = 6;

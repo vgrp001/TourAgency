@@ -11,15 +11,19 @@
             Personal Information
         </div>
         <div class="card-body">
-            <div class="card-body">
-                @using (Html.BeginForm("ChangeInformation", "Customer", FormMethod.Get))
-                {
-                    @Html.AntiForgeryToken()
-                    <p>Your Name: @ViewBag.Customer.Name</p>
-                    <p>Your Surname: @ViewBag.Customer.Surname</p>
-                    <p>You Discount: @ViewBag.Customer.Discount</p>
-                    <input type="submit" class="btn btn-success w-50" value="Change information" />
-                }
+            <div class="row">
+                <div class="col">
+                    @using (Html.BeginForm("ChangeInformation", "Customer", FormMethod.Get))
+                    {
+                        @Html.AntiForgeryToken()
+                        <p>Your Name: @ViewBag.Customer.Name</p>
+                        <p>Your Surname: @ViewBag.Customer.Surname</p>
+                        <input type="submit" class="btn btn-success w-50" value="Change information" />
+                    }
+                </div>
+                <div class="col">
+                    <h2>You Discount: @ViewBag.Customer.Discount %</h2>
+                </div>
             </div>
         </div>
     </div>
@@ -27,19 +31,26 @@
     <div class="container-fluid d-flex flex-wrap">
         @foreach (var item in Model)
         {
-            <div class="card mr-3 ml-3 mb-3 mt-3" style="width: 18rem;">
-                <div class="card-header">
-                    @item.TypeOfStatus.Type
+            using (Html.BeginForm("TourCancellation", "Customer", new { id = item.Id }, FormMethod.Get))
+            {
+                <div class="card mr-3 ml-3 mb-3 mt-3" style="width: 18rem;">
+                    <div class="card-header">
+                        @item.TypeOfStatus.Type
+                    </div>
+                    <div class="card-body">
+                        <p>Price: @item.RealPrice</p>
+                        <p>Number of people: @item.RealNumberOfPeople</p>
+                        <p>Start: @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.Tour.StartOfTour))</p>
+                        <p>End: @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.Tour.EndOfTour))</p>
+                        <p>City: @item.Tour.City.NameCity</p>
+                        <p>Type: @item.Tour.TypeOfTour.Type</p>
+                        @if (item.TypeOfStatus.Type == "Registered")
+                        {
+                            <input type="submit" class="btn btn-danger w-50" value="Cancellations" />
+                        }
+                    </div>
                 </div>
-                <div class="card-body">
-                    <p>Price: @item.RealPrice</p>
-                    <p>Number of people: @item.RealNumberOfPeople</p>
-                    <p>Start: @item.Tour.StartOfTour</p>
-                    <p>End: @item.Tour.EndOfTour</p>
-                    <p>City: @item.Tour.City.NameCity</p>
-                    <p>Type: @item.Tour.TypeOfTour.Type</p>
-                </div>
-            </div>
+            }
         }
     </div>
 </div>

@@ -260,7 +260,7 @@ namespace TourAgency.Dal.Helpers
                 CityId = cityBerlin.Id,
                 Price = 8500,
                 IsHot = false,
-                StartOfTour = Convert.ToDateTime("04/06/2020"),
+                StartOfTour = Convert.ToDateTime("04/07/2020"),
                 EndOfTour = Convert.ToDateTime("04/08/2020"),
                 MaxNumberOfPeople = 10,
                 TypeOfHotel = typeOfHotelHostel,
@@ -271,11 +271,48 @@ namespace TourAgency.Dal.Helpers
                 NumberOfOrders = 5,
                 ImagePath = "Berlin.jpg"
             };
+            var tour5 = new Tour()
+            {
+                Id = 5,
+                City = cityMoscow,
+                CityId = cityMoscow.Id,
+                Price = 7200,
+                IsHot = true,
+                StartOfTour = Convert.ToDateTime("09/06/2020"),
+                EndOfTour = Convert.ToDateTime("10/06/2020"),
+                MaxNumberOfPeople = 7,
+                TypeOfHotel = typeOfHotelHostel,
+                TypeOfHotelId = typeOfHotelHostel.Id,
+                TypeOfTour = typeOfTourRelax,
+                TypeOfTourId = typeOfTourRelax.Id,
+                IsDelete = false,
+                NumberOfOrders = 3,
+                ImagePath = "Moscow.jpeg"
+            };
+            var tour6 = new Tour()
+            {
+                Id = 6,
+                City = cityStockholm,
+                CityId = cityStockholm.Id,
+                Price = 6300,
+                IsHot = false,
+                StartOfTour = Convert.ToDateTime("19/07/2020"),
+                EndOfTour = Convert.ToDateTime("27/07/2020"),
+                MaxNumberOfPeople = 3,
+                TypeOfHotel = typeOfHotelLodge,
+                TypeOfHotelId = typeOfHotelLodge.Id,
+                TypeOfTour = typeOfTourShopping,
+                TypeOfTourId = typeOfTourShopping.Id,
+                IsDelete = false,
+                NumberOfOrders = 2,
+                ImagePath = "Stockholm.jpg"
+            };
             db.Tours.Add(tour1);
             db.Tours.Add(tour2);
             db.Tours.Add(tour3);
             db.Tours.Add(tour4);
-
+            db.Tours.Add(tour5);
+            db.Tours.Add(tour6);
             var tourCustomer1 = new TourCustomer()
             {
                 Id = 1,

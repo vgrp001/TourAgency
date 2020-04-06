@@ -14,9 +14,10 @@ namespace TourAgency.Dal.Repositories
         {
             var tourdb = tourAgencyContext.Tours.Find(tour.Id);
             tourdb.StartOfTour = tour.StartOfTour;
-            tourdb.StartOfTour = tour.StartOfTour;
+            tourdb.EndOfTour = tour.EndOfTour;
             tourdb.TypeOfTourId = tour.TypeOfTourId;
             tourdb.TypeOfHotelId = tour.TypeOfHotelId;
+            tourdb.ImagePath = tour.ImagePath;
             tourdb.MaxNumberOfPeople = tour.MaxNumberOfPeople;
             tourdb.Price = tour.Price;
             tourdb.CityId = tour.CityId;

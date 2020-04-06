@@ -7,6 +7,14 @@
     <br />
     <br />
     <h2 class="text-center">Customers</h2>
+    @using (Html.BeginForm("CustomerSearch", "Manager", FormMethod.Post, htmlAttributes: new { @id = "Form" }))
+    {
+        <h5 class="mr-3 ml-3">Search Customer</h5>
+        <div class="d-flex flex-row mr-3 ml-3 mb-3 mt-3">
+            <input type="text" class="form-control form-control-lg d-block w-auto" name="fullName" value="" />
+            <input type="submit" class="btn btn-primary mr-3 ml-3" value="Search" />
+        </div>
+    }
     @using (Html.BeginForm("UpdateCustomerInformation", "Manager", FormMethod.Post, htmlAttributes: new { @id = "Form" }))
     {
         if (User.IsInRole("admin"))
