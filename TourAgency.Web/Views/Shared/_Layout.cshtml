@@ -28,6 +28,10 @@
                 </div>
             </div>
         }
+        else if(!User.IsInRole("admin") && !User.IsInRole("manager"))
+        {
+            @Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "btn btn-info mr-2 nav-item nav-link active" })
+        }
         @Html.Partial("_LoginPartial")
     </nav>
     @RenderBody()

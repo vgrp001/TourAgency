@@ -223,5 +223,36 @@ namespace TourAgency.Bll.Helpers
             var typeOfStatusDto = mapper.Map<TypeOfStatusDTO>(typeOfStatus);
             return typeOfStatusDto;
         }
+
+        public static TypeOfHotel MapTypeOfHotel(TypeOfHotelDTO typeOfHotelDto)
+        {
+            var configuration = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<TypeOfHotelDTO, TypeOfHotel>();
+            });
+            var mapper = configuration.CreateMapper();
+            var typeOfHotel = mapper.Map<TypeOfHotelDTO, TypeOfHotel>(typeOfHotelDto);
+            return typeOfHotel;
+        }
+        public static TypeOfTour MapTypeOfTour(TypeOfTourDTO typeOfTourDto)
+        {
+            var configuration = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<TypeOfTourDTO, TypeOfTour>();
+            });
+            var mapper = configuration.CreateMapper();
+            var typeOfTour = mapper.Map<TypeOfTourDTO, TypeOfTour>(typeOfTourDto);
+            return typeOfTour;
+        }
+        public static City MapCity(CityDTO cityDto)
+        {
+            var configuration = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<CityDTO, City>();
+            });
+            var mapper = configuration.CreateMapper();
+            var city = mapper.Map<CityDTO, City>(cityDto);
+            return city;
+        }
     }
 }

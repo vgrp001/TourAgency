@@ -181,6 +181,46 @@ namespace TourAgency.Web.Controllers
             }
 
         }
+        public ActionResult AddHotel(TypeOfHotelViewModel typeOfHotel)
+        {
+            if (Request.HttpMethod == "POST")
+            {
+                var typeOfHotelDto = MappingViewModel.MapTypeOfHotelDTO(typeOfHotel);
+                _adminService.AddHotel(typeOfHotelDto);
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return View();
+            }
+        }
+        public ActionResult AddTypeOfTour(TypeOfTourViewModel typeOfTour)
+        {
+            if (Request.HttpMethod == "POST")
+            {
+                var typeOfTourDto = MappingViewModel.MapTypeOfTourDTO(typeOfTour);
+                _adminService.AddTypeOfTour(typeOfTourDto);
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return View();
+            }
+        }
+        public ActionResult AddCity(CityViewModel city)
+        {
+            if (Request.HttpMethod == "POST")
+            {
+                var cityDto = MappingViewModel.MapCityDTO(city);
+                _adminService.AddCity(cityDto);
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return View();
+            }
+        }
+
         protected override void Dispose(bool disposing)
         {
             _adminService.Dispose();

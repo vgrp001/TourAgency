@@ -11,5 +11,8 @@ namespace TourAgency.Bll.Services.Interfaces
         ManagerDTO GetManagerById(int id);
         void BlockManager(int id);
         void UnlockManager(int id);
+        void AddHotel(TypeOfHotelDTO typeOfHotelDTO);
+        void AddTypeOfTour(TypeOfTourDTO typeOfTourDTO);
+        void AddCity(CityDTO cityDTO);
     }
 }

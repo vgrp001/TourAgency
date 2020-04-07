@@ -196,3 +196,9 @@
 2020-04-07 01:34:41.179 +03:00 [INF] Admin unlock manager id: 1
 2020-04-07 01:35:34.879 +03:00 [INF] Manager update status tour id: 2
 2020-04-07 01:35:46.607 +03:00 [INF] Customer 1 сanceled the tour 1
+2020-04-07 02:19:13.120 +03:00 [INF] Logger On
+2020-04-07 02:49:12.810 +03:00 [INF] Logger On
+2020-04-07 02:55:58.521 +03:00 [INF] Logger On
+2020-04-07 02:59:29.844 +03:00 [INF] Admin create a new tour
+2020-04-07 03:04:47.367 +03:00 [INF] Logger On
+2020-04-07 03:24:57.870 +03:00 [INF] Logger On

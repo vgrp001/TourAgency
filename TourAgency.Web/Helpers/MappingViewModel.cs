@@ -207,5 +207,35 @@ namespace TourAgency.Web.Helpers
             var toursCustomerDTO = mapper.Map<TourCustomerViewModel, TourCustomerDTO>(tourCustomer);
             return toursCustomerDTO;
         }
+        public static TypeOfHotelDTO MapTypeOfHotelDTO(TypeOfHotelViewModel typeOfHotel)
+        {
+            var configuration = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<TypeOfHotelViewModel, TypeOfHotelDTO>();
+            });
+            var mapper = configuration.CreateMapper();
+            var typeOfHotelDTO = mapper.Map<TypeOfHotelViewModel, TypeOfHotelDTO>(typeOfHotel);
+            return typeOfHotelDTO;
+        }
+        public static TypeOfTourDTO MapTypeOfTourDTO(TypeOfTourViewModel typeOfTour)
+        {
+            var configuration = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<TypeOfTourViewModel, TypeOfTourDTO>();
+            });
+            var mapper = configuration.CreateMapper();
+            var typeOfTourDTO = mapper.Map<TypeOfTourViewModel, TypeOfTourDTO>(typeOfTour);
+            return typeOfTourDTO;
+        }
+        public static CityDTO MapCityDTO(CityViewModel city)
+        {
+            var configuration = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<CityViewModel, CityDTO>();
+            });
+            var mapper = configuration.CreateMapper();
+            var cityDTO = mapper.Map<CityViewModel, CityDTO>(city);
+            return cityDTO;
+        }
     }
 }

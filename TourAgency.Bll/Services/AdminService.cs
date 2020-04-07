@@ -76,5 +76,26 @@ namespace TourAgency.Bll.Services
                 throw new ValidationException("Failed to block manager", "null error");
             _dataBase.Save();
         }
+
+        public void AddHotel(TypeOfHotelDTO typeOfHotelDTO)
+        {
+            var typeOfHotel = MappingDTO.MapTypeOfHotel(typeOfHotelDTO);
+            _dataBase.TypeOfHotels.Create(typeOfHotel);
+            _dataBase.Save();
+        }
+
+        public void AddTypeOfTour(TypeOfTourDTO typeOfTourDTO)
+        {
+            var typeOfTour = MappingDTO.MapTypeOfTour(typeOfTourDTO);
+            _dataBase.TypeOfTours.Create(typeOfTour);
+            _dataBase.Save();
+        }
+
+        public void AddCity(CityDTO cityDTO)
+        {
+            var city = MappingDTO.MapCity(cityDTO);
+            _dataBase.Cites.Create(city);
+            _dataBase.Save();
+        }
     }
 }

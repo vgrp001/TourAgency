@@ -8,29 +8,38 @@
 <div style="position: fixed; width: 18rem; height: auto;">
     <br />
     <br />
-    <div class="border rounded mr-3 ml-3 mb-3 mt-3" style="width: 18rem;">
+    <div class="border card rounded mr-3 ml-3 mb-3 mt-3" style="width: 18rem;">
         @using (Html.BeginForm("TourСatalog", "Customer", FormMethod.Post, htmlAttributes: new { @id = "Form" }))
         {
             <select name="sortType" class="form-control" onchange="document.getElementById('Form').submit();">
-                <option value="" hidden>Choice</option>
+                <option value="" hidden>Choice Sort</option>
                 <option value="1">From smaller to larger</option>
                 <option value="2">From larger to smaller</option>
             </select>
+            <div class="custom-control custom-radio custom-control-inline ml-3">
+                @Html.RadioButton("sort", 1, true, htmlAttributes: new { @class = "custom-control-input", @id = "customRadio1" })
+                <label class="custom-control-label" for="customRadio1">Price</label>
+            </div>
             <br />
-            @Html.RadioButton("sort", 1, true, htmlAttributes: new { @onchange = "document.getElementById('Form').submit();" })
-            <b>Price</b>
+            <div class="custom-control custom-radio custom-control-inline  ml-3">
+                @Html.RadioButton("sort", 2, htmlAttributes: new { @class = "custom-control-input", @id = "customRadio2" })
+                <label class="custom-control-label" for="customRadio2">Type of tour</label>
+            </div>
             <br />
-            @Html.RadioButton("sort", 2, htmlAttributes: new { @onchange = "document.getElementById('Form').submit();" })
-            <b>Type of tour</b>
+            <div class="custom-control custom-radio custom-control-inline ml-3">
+                @Html.RadioButton("sort", 3, htmlAttributes: new { @class = "custom-control-input", @id = "customRadio3" })
+                <label class="custom-control-label" for="customRadio3">Max number of people</label>
+            </div>
             <br />
-            @Html.RadioButton("sort", 3, htmlAttributes: new { @onchange = "document.getElementById('Form').submit();" })
-            <b>Max number of people</b>
+            <div class="custom-control custom-radio custom-control-inline ml-3">
+                @Html.RadioButton("sort", 4, htmlAttributes: new { @class = "custom-control-input", @id = "customRadio4" })
+                <label class="custom-control-label" for="customRadio4">Hotel stars</label>
+            </div>
             <br />
-            @Html.RadioButton("sort", 4, htmlAttributes: new { @onchange = "document.getElementById('Form').submit();" })
-            <b>Hotel stars</b>
-            <br />
-            @Html.RadioButton("sort", 5, htmlAttributes: new { @onchange = "document.getElementById('Form').submit();" })
-            <b>Start of tour</b>
+            <div class="custom-control custom-radio custom-control-inline ml-3">
+                @Html.RadioButton("sort", 5, htmlAttributes: new { @class = "custom-control-input", @id = "customRadio5" })
+                <label class="custom-control-label" for="customRadio5">Start of tour</label>
+            </div>
         }
     </div>
 </div>
@@ -55,7 +64,7 @@
                         <h6 class="card-text">Price: @item.Price</h6>
                         <h6 class="card-text">Type of tour: @item.TypeOfTour.Type</h6>
                         <h6 class="card-text">Max number of people: @item.MaxNumberOfPeople</h6>
-                        <h6 class="card-text">Hotel stars: @item.TypeOfHotel.Type</h6>
+                        <h6 class="card-text">Hotel: @item.TypeOfHotel.Type, Stars: @item.TypeOfHotel.NumberOfStars</h6>
                         <h6 class="card-text">Start: @Convert.ToString(string.Format("{0:dd/MM/yyyy}", item.StartOfTour))</h6>
                         <h6 class="card-text">Number of orders: @item.NumberOfOrders</h6>
                         <h6 class="card-text">City: @item.City.NameCity</h6>
