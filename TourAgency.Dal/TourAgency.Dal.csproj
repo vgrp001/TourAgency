@@ -62,6 +62,7 @@
     <Compile Include="Entities\Administrator.cs" />
     <Compile Include="Entities\City.cs" />
     <Compile Include="Entities\Customer.cs" />
+    <Compile Include="Entities\Feedback.cs" />
     <Compile Include="Entities\Manager.cs" />
     <Compile Include="Entities\Tour.cs" />
     <Compile Include="Entities\TourCustomer.cs" />
@@ -73,6 +74,8 @@
     <Compile Include="Repositories\AdministratorRepository.cs" />
     <Compile Include="Repositories\CityRepository.cs" />
     <Compile Include="Repositories\CustomerRepository.cs" />
+    <Compile Include="Repositories\FeedbackRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IFeedbackRepository.cs" />
     <Compile Include="Repositories\Interfaces\IAdministratorRepository.cs" />
     <Compile Include="Repositories\Interfaces\IBaseRepository.cs" />
     <Compile Include="Repositories\Interfaces\ICityRepository.cs" />

@@ -20,6 +20,7 @@ namespace TourAgency.Dal.UnitOfWork
         private TypeOfHotelRepository _typeOfHotelRepository;
         private TypeOfStatusRepository _typeOfStatuslRepository;
         private TypeOfTourRepository _typeOfTourRepository;
+        private FeedbackRepository _feedbackRepository;
 
         private bool _disposed = false;
 
@@ -108,6 +109,15 @@ namespace TourAgency.Dal.UnitOfWork
                 if (_typeOfStatuslRepository == null)
                     _typeOfStatuslRepository = new TypeOfStatusRepository(_context);
                 return _typeOfStatuslRepository;
+            }
+        }
+        public FeedbackRepository Feedbacks
+        {
+            get
+            {
+                if (_feedbackRepository == null)
+                    _feedbackRepository = new FeedbackRepository(_context);
+                return _feedbackRepository;
             }
         }
 

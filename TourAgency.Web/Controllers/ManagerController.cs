@@ -234,6 +234,31 @@ namespace TourAgency.Web.Controllers
                 return View(customerViewModel);
             }
         }
+        public ActionResult ViewFeedback()
+        {
+            var feedbacks = _managerService.GetActiveFeedbacks();
+            var feedbacksViewModel = MappingViewModel.MapFeedbackListViewModel(feedbacks);
+            foreach (var item in feedbacksViewModel)
+            {
+                item.Message = item.Message.Substring(0, 20);
+            }
+            return View(feedbacksViewModel);
+        }
+
+        public ActionResult DetailFeedback(int? id)
+        {
+            var feedback = _managerService.GetActiveFeedbacks().Where(f=>f.Id == id.Value).First();
+            var feedbackViewModel = MappingViewModel.MapFeedbackViewModel(feedback);
+            if (Request.HttpMethod == "POST")
+            {
+                _managerService.ReadFeedback(id.Value);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(feedbackViewModel);
+            }
+        }
         protected override void Dispose(bool disposing)
         {
             _managerService.Dispose();

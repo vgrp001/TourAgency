@@ -202,3 +202,29 @@
 2020-04-07 02:59:29.844 +03:00 [INF] Admin create a new tour
 2020-04-07 03:04:47.367 +03:00 [INF] Logger On
 2020-04-07 03:24:57.870 +03:00 [INF] Logger On
+2020-04-07 05:17:53.133 +03:00 [INF] Logger On
+2020-04-07 05:24:46.460 +03:00 [INF] Logger On
+2020-04-07 05:27:50.828 +03:00 [INF] Logger On
+2020-04-07 05:28:47.666 +03:00 [INF] Logger On
+2020-04-07 05:33:30.125 +03:00 [INF] Logger On
+2020-04-07 05:35:45.545 +03:00 [INF] Customer 1 sent feedback
+2020-04-07 05:41:24.897 +03:00 [INF] Logger On
+2020-04-07 06:26:01.705 +03:00 [INF] Logger On
+2020-04-07 06:29:13.037 +03:00 [INF] Customer 1 sent feedback
+2020-04-07 06:30:01.122 +03:00 [INF] Logger On
+2020-04-07 06:35:12.475 +03:00 [INF] Logger On
+2020-04-07 06:37:21.708 +03:00 [INF] Logger On
+2020-04-07 06:38:53.885 +03:00 [INF] Logger On
+2020-04-07 06:40:54.147 +03:00 [INF] Logger On
+2020-04-07 06:42:15.003 +03:00 [INF] Logger On
+2020-04-07 06:42:48.521 +03:00 [INF] Customer 1 sent feedback
+2020-04-07 06:49:01.026 +03:00 [INF] Logger On
+2020-04-07 06:50:50.344 +03:00 [INF] Customer 1 sent feedback
+2020-04-07 07:06:00.502 +03:00 [INF] Logger On
+2020-04-07 07:07:03.790 +03:00 [INF] Customer 1 sent feedback
+2020-04-07 07:33:04.736 +03:00 [INF] Logger On
+2020-04-07 07:34:53.946 +03:00 [INF] Customer 1 sent feedback
+2020-04-07 07:37:02.470 +03:00 [INF] Logger On
+2020-04-07 07:40:50.648 +03:00 [INF] Customer 1 sent feedback
+2020-04-07 07:44:23.219 +03:00 [INF] Logger On
+2020-04-07 07:45:17.605 +03:00 [INF] Customer 1 sent feedback

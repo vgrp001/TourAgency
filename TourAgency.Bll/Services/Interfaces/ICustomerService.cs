@@ -11,5 +11,6 @@ namespace TourAgency.Bll.Services.Interfaces
         void BuyTour(TourDTO tour, string userId, int realNumberOfPeople, int realPrice);
         void CancelTour(TourCustomerDTO tourCustomer);
         void ChangePersonalInformation(CustomerDTO customer);
+        void SendFeedback(FeedbackDTO feedbackDTO);
     }
 }

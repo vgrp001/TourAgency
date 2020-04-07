@@ -16,6 +16,7 @@ namespace TourAgency.Dal.UnitOfWork.Interfaces
         TypeOfStatusRepository TypeOfStatuses { get; }
         TypeOfTourRepository TypeOfTours { get; }
         TourCustomersRepository TourCustomers { get; }
+        FeedbackRepository Feedbacks { get; }
         void Save();
     }
 }

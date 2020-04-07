@@ -70,6 +70,7 @@
     <Compile Include="DTO\Abstractions\BaseEntityDTO.cs" />
     <Compile Include="DTO\CityDTO.cs" />
     <Compile Include="DTO\CustomerDTO.cs" />
+    <Compile Include="DTO\FeedbackDTO.cs" />
     <Compile Include="DTO\ManagerDTO.cs" />
     <Compile Include="DTO\TourCustomerDTO.cs" />
     <Compile Include="DTO\TourDTO.cs" />

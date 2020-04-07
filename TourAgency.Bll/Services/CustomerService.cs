@@ -89,5 +89,12 @@ namespace TourAgency.Bll.Services
             _dataBase.Customers.UpdateInfo(customer);
             _dataBase.Save();
         }
+
+        public void SendFeedback(FeedbackDTO feedbackDTO)
+        {
+            var feedback = MappingDTO.MapFeedback(feedbackDTO);
+            _dataBase.Feedbacks.Create(feedback);
+            _dataBase.Save();
+        }
     }
 }

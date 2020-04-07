@@ -120,5 +120,20 @@ namespace TourAgency.Bll.Services
             var managerDto = MappingDTO.MapManagerDTO(manager);
             return managerDto;
         }
+
+        public List<FeedbackDTO> GetActiveFeedbacks()
+        {
+            var feedbacks = _dataBase.Feedbacks.GetAll().Where(f =>f.IsRead == false).ToList();
+            var feedbacksDto = MappingDTO.MapFeedbackListDTO(feedbacks);
+            return feedbacksDto;
+        }
+
+        public void ReadFeedback(int id)
+        {
+            var feedback = _dataBase.Feedbacks.Get(id);
+            feedback.IsRead = true;
+            _dataBase.Feedbacks.Update(feedback);
+            _dataBase.Save();
+        }
     }
 }

@@ -16,5 +16,7 @@ namespace TourAgency.Bll.Services.Interfaces
         List<CustomerDTO> GetAllCustomers();
         CustomerDTO GetCustomerById(int id);
         void ChangeDiscountCustomer(CustomerDTO customerDto);
+        List<FeedbackDTO> GetActiveFeedbacks();
+        void ReadFeedback(int id);
     }
 }

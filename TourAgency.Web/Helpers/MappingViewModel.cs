@@ -74,7 +74,7 @@ namespace TourAgency.Web.Helpers
                 cfg.CreateMap<TypeOfTourDTO, TypeOfTourViewModel>();
             });
             var mapper = configuration.CreateMapper();
-            var customersViewModel = mapper.Map < List<CustomerDTO>, List< CustomerViewModel> >(customers);
+            var customersViewModel = mapper.Map<List<CustomerDTO>, List<CustomerViewModel>>(customers);
             return customersViewModel;
         }
         public static TypeOfStatusViewModel MapTypeOfStatusViewModel(TypeOfStatusDTO typeOfStatus)
@@ -236,6 +236,84 @@ namespace TourAgency.Web.Helpers
             var mapper = configuration.CreateMapper();
             var cityDTO = mapper.Map<CityViewModel, CityDTO>(city);
             return cityDTO;
+        }
+
+        public static FeedbackDTO MapFeedbackDTO(FeedbackViewModel feedback)
+        {
+            var configuration = new MapperConfiguration(cfg =>
+            {
+                 cfg.AllowNullCollections = true;
+                 cfg.CreateMap<CustomerViewModel, CustomerDTO>();
+                 cfg.CreateMap<TourCustomerViewModel, TourCustomerDTO>();
+                 cfg.CreateMap<TourViewModel, TourDTO>()
+                 .ForMember(dest => dest.Customers, opt => opt.MapFrom(src => src.Customers));
+                 cfg.CreateMap<CityViewModel, CityDTO>();
+                 cfg.CreateMap<TypeOfHotelViewModel, TypeOfHotelDTO>();
+                 cfg.CreateMap<TypeOfStatusViewModel, TypeOfStatusDTO>();
+                 cfg.CreateMap<TypeOfTourViewModel, TypeOfTourDTO>();
+                 cfg.CreateMap<FeedbackViewModel, FeedbackDTO>();
+            });
+            var mapper = configuration.CreateMapper();
+            var feedbackDTO = mapper.Map<FeedbackViewModel, FeedbackDTO>(feedback);
+            return feedbackDTO;
+        }
+
+        public static FeedbackViewModel MapFeedbackViewModel(FeedbackDTO feedbackDTO)
+        {
+            var configuration = new MapperConfiguration(cfg =>
+            {
+                cfg.AllowNullCollections = true;
+                cfg.CreateMap<CustomerDTO, CustomerViewModel>();
+                cfg.CreateMap<TourCustomerDTO, TourCustomerViewModel>();
+                cfg.CreateMap<TourDTO, TourViewModel>()
+                .ForMember(dest => dest.Customers, opt => opt.MapFrom(src => src.Customers));
+                cfg.CreateMap<CityDTO, CityViewModel>();
+                cfg.CreateMap<TypeOfHotelDTO, TypeOfHotelViewModel>();
+                cfg.CreateMap<TypeOfStatusDTO, TypeOfStatusViewModel>();
+                cfg.CreateMap<TypeOfTourDTO, TypeOfTourViewModel>();
+                cfg.CreateMap<FeedbackDTO, FeedbackViewModel>();
+            });
+            var mapper = configuration.CreateMapper();
+            var feedback = mapper.Map<FeedbackDTO, FeedbackViewModel>(feedbackDTO);
+            return feedback;
+        }
+        public static List<FeedbackViewModel> MapFeedbackListViewModel(List<FeedbackDTO> feedbacksDTO)
+        {
+            var configuration = new MapperConfiguration(cfg =>
+            {
+                cfg.AllowNullCollections = true;
+                cfg.CreateMap<CustomerDTO, CustomerViewModel>();
+                cfg.CreateMap<TourCustomerDTO, TourCustomerViewModel>();
+                cfg.CreateMap<TourDTO, TourViewModel>()
+                .ForMember(dest => dest.Customers, opt => opt.MapFrom(src => src.Customers));
+                cfg.CreateMap<CityDTO, CityViewModel>();
+                cfg.CreateMap<TypeOfHotelDTO, TypeOfHotelViewModel>();
+                cfg.CreateMap<TypeOfStatusDTO, TypeOfStatusViewModel>();
+                cfg.CreateMap<TypeOfTourDTO, TypeOfTourViewModel>();
+                cfg.CreateMap<FeedbackDTO, FeedbackViewModel>();
+            });
+            var mapper = configuration.CreateMapper();
+            var feedbacks = mapper.Map<List<FeedbackDTO>, List<FeedbackViewModel>>(feedbacksDTO);
+            return feedbacks;
+        }
+        public static List<FeedbackDTO> MapFeedbackListDTO(List<FeedbackViewModel> feedbacks)
+        {
+            var configuration = new MapperConfiguration(cfg =>
+            {
+                cfg.AllowNullCollections = true;
+                cfg.CreateMap<CustomerViewModel, CustomerDTO>();
+                cfg.CreateMap<TourCustomerViewModel, TourCustomerDTO>();
+                cfg.CreateMap<TourViewModel, TourDTO>()
+                .ForMember(dest => dest.Customers, opt => opt.MapFrom(src => src.Customers));
+                cfg.CreateMap<CityViewModel, CityDTO>();
+                cfg.CreateMap<TypeOfHotelViewModel, TypeOfHotelDTO>();
+                cfg.CreateMap<TypeOfStatusViewModel, TypeOfStatusDTO>();
+                cfg.CreateMap<TypeOfTourViewModel, TypeOfTourDTO>();
+                cfg.CreateMap<FeedbackViewModel, FeedbackDTO>();
+            });
+            var mapper = configuration.CreateMapper();
+            var feedbacksDTO = mapper.Map<List<FeedbackViewModel>, List<FeedbackDTO>>(feedbacks);
+            return feedbacksDTO;
         }
     }
 }

@@ -25,5 +25,6 @@ namespace TourAgency.Dal.EF
         public DbSet<TypeOfTour> TypeOfTours { get; set; }
         public DbSet<Tour> Tours { get; set; }
         public DbSet<TourCustomer> TourCustomers { get; set; }
+        public DbSet<Feedback> Feedbacks { get; set; }
     }
 }

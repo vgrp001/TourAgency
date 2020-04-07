@@ -207,7 +207,6 @@ namespace TourAgency.Web.Controllers
             };
             return RedirectToAction("Index", messageInfo);
         }
-
         protected override void Dispose(bool disposing)
         {
             _customerService.Dispose();
