@@ -5,6 +5,7 @@ using TourAgency.Dal.Helpers;
 
 namespace TourAgency.Dal.EF
 {
+    //Context database
     public class TourAgencyContext : IdentityDbContext<IdentityUser>
     {
         public TourAgencyContext(string connectionString) 

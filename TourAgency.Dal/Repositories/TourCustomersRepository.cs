@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using TourAgency.Dal.EF;
 using TourAgency.Dal.Entities;
 using TourAgency.Dal.Repositories.Interfaces;

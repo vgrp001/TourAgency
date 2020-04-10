@@ -15,14 +15,15 @@
                 <div class="col">
                     @using (Html.BeginForm("ChangeInformation", "Customer", FormMethod.Get))
                     {
-                        @Html.AntiForgeryToken()
                         <p>Your Name: @ViewBag.Customer.Name</p>
                         <p>Your Surname: @ViewBag.Customer.Surname</p>
                         <input type="submit" class="btn btn-success w-50" value="Change information" />
                     }
                 </div>
                 <div class="col">
+                    <h2>You Step Discount: @ViewBag.Customer.StepDiscount %</h2>
                     <h2>You Discount: @ViewBag.Customer.Discount %</h2>
+                    <h4>if you cancel the tour order, you will lose 5% discount</h4>
                 </div>
             </div>
         </div>

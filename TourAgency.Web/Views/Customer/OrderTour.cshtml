@@ -13,7 +13,6 @@
         <div class="card-body">
             @using (Html.BeginForm("OrderTour", "Customer", FormMethod.Post, htmlAttributes: new { @id = "Form" }))
             {
-                @Html.AntiForgeryToken()
                 <img src="@Url.Content("~/Content/Image/" + Model.ImagePath)" />
                 @Html.ValidationSummary(false, "", htmlAttributes: new { @class = "text-danger" })
                 @Html.HiddenFor(model => model.Id, htmlAttributes: new { @name = "id" })
@@ -28,9 +27,7 @@
                 <br />
                 <b>Price:</b>
                 @Html.DisplayFor(model => model.Price)
-                <br />
                 <p class="text-danger font-weight-bold">Price for you: @ViewBag.PriceForCustomer</p>
-                <br />
                 <b>City:</b>
                 @Html.DisplayFor(model => model.City.NameCity)
                 <br />

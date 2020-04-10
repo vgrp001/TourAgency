@@ -20,7 +20,7 @@ namespace TourAgency.Web.Controllers
         }
         public ActionResult Teapot()
         {
-            Response.StatusCode = 403;
+            Response.StatusCode = 418;
             return View();
         }
         public ActionResult Blocked()

@@ -1,8 +1,6 @@
 ﻿using System;
 using TourAgency.Dal.EF;
-using TourAgency.Dal.Entities;
 using TourAgency.Dal.Repositories;
-using TourAgency.Dal.Repositories.Interfaces;
 using TourAgency.Dal.UnitOfWork.Interfaces;
 
 namespace TourAgency.Dal.UnitOfWork

@@ -1,8 +1,4 @@
 ﻿using Ninject.Modules;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using TourAgency.Bll.Services;
 using TourAgency.Bll.Services.Interfaces;
 

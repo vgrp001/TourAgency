@@ -1,6 +1,5 @@
 ﻿using TourAgency.Dal.EF;
 using System.Linq;
-
 using TourAgency.Dal.Entities;
 using TourAgency.Dal.Repositories.Interfaces;
 

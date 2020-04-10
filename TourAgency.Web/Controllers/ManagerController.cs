@@ -1,12 +1,7 @@
-﻿using AutoMapper;
-using Serilog;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using TourAgency.Bll.DTO;
 using TourAgency.Bll.Services.Interfaces;
 using TourAgency.Web.Filters;
 using TourAgency.Web.Helpers;
@@ -18,7 +13,6 @@ namespace TourAgency.Web.Controllers
     [Authorize(Roles = "manager, admin")]
     public class ManagerController : Controller
     {
-        // GET: Manager
         private readonly IManagerService _managerService;
         public ManagerController(IManagerService manager)
         {
@@ -40,13 +34,12 @@ namespace TourAgency.Web.Controllers
             int pageSize = 5;
             var activeTours = _managerService.GetActiveTours();
             var activeToursViewModel = MappingViewModel.MapTourListViewModel(activeTours);
-
             var activeToursPerPages = activeToursViewModel.Skip((page - 1) * pageSize).Take(pageSize);
-
             var pageInfo = new PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = activeToursViewModel.Count };
             var ivm = new TourPaginViewModel { PageInfo = pageInfo, Tours = activeToursPerPages.ToList() };
             return View(ivm);
         }
+        [NullExceptionFilter]
         public ActionResult UpdateTour(int id, string startOfTour, string endOfTour,
             int? typeOfTourId, int? typeOfHotelsId, int? maxNumberOfPeople, int? price,
             int? cityId, string isHot, int? numberOfOrders)
@@ -149,7 +142,7 @@ namespace TourAgency.Web.Controllers
                 return View(tour);
             }
         }
-        [NullException]
+        [NullExceptionFilter]
         public ActionResult UpdateStatus(List<int?> typeOfStatusId)
         {
             var registeredTours = _managerService.GetRegisteredTours();
@@ -177,7 +170,6 @@ namespace TourAgency.Web.Controllers
                 return View(registeredToursViewModel);
             }
         }
-
         public ActionResult CustomerSearch(string fullName, int page = 1)
         {
             int pageSize = 6;
@@ -197,6 +189,7 @@ namespace TourAgency.Web.Controllers
             var ivm = new CustomerPaginViewModel { PageInfo = pageInfo, Customers = customersPerPages };
             return View(ivm);
         }
+        [ValidationExceptionFilter]
         public ActionResult ChangeDiscount(int id, int? maxDiscount,int? stepDiscount)
         {
             var customer = _managerService.GetCustomerById(id);
@@ -234,6 +227,8 @@ namespace TourAgency.Web.Controllers
                 return View(customerViewModel);
             }
         }
+        [HttpGet]
+        [NullExceptionFilter]
         public ActionResult ViewFeedback()
         {
             var feedbacks = _managerService.GetActiveFeedbacks();
@@ -244,7 +239,7 @@ namespace TourAgency.Web.Controllers
             }
             return View(feedbacksViewModel);
         }
-
+        [NullExceptionFilter]
         public ActionResult DetailFeedback(int? id)
         {
             var feedback = _managerService.GetActiveFeedbacks().Where(f=>f.Id == id.Value).First();

@@ -8,6 +8,7 @@ using TourAgency.Dal.Entities;
 using TourAgency.Dal.UnitOfWork.Interfaces;
 using System.Collections.Generic;
 using TourAgency.Bll.BusinessModels;
+using TourAgency.Bll.Infrastructure;
 
 namespace TourAgency.Bll.Services
 {
@@ -23,17 +24,22 @@ namespace TourAgency.Bll.Services
             var tourCustomer = _dataBase.TourCustomers.GetAll();
             var customerId = _dataBase.Customers.GetCustomerIdByIdentityUserId(userId);
             var customerTour = tourCustomer.Where(u => u.CustomerId == customerId);
+            if (customerTour is null)
+            {
+                throw new ValidationException("Failed to get manager", "null error");
+            }
             var tourDto = MappingDTO.MapTourCustomerListDTO(customerTour.ToList());
             return tourDto;
         }
-
         public void Register(CustomerDTO model)
         {
             var customer = MappingDTO.MapCustomer(model);
             _dataBase.Customers.Register(customer);
             _dataBase.Save();
         }
-
+        /// <summary>
+        ///    tour purchase with a decrease in the number of possible orders
+        /// </summary>
         public void BuyTour(TourDTO tourDto, string userId, int realNumberOfPeople, int realPrice)
         {
             var customerId = _dataBase.Customers.GetCustomerIdByIdentityUserId(userId);
@@ -52,17 +58,17 @@ namespace TourAgency.Bll.Services
             _dataBase.TourCustomers.Create(tourCustomer);
             _dataBase.Save();
         }
-
         public CustomerDTO GetCustomerByIdentityUserId(string userId)
         {
             var customerId = _dataBase.Customers.GetCustomerIdByIdentityUserId(userId);
-            if(customerId == -1)
+            if (customerId == -1)
+            {
                 return null;
+            }
             var customer =  _dataBase.Customers.Get(customerId);
             var customerDto = MappingDTO.MapCustomerDTO(customer);
             return customerDto;
         }
-
         public void ChangePersonalInformation(CustomerDTO customerDto)
         {
             var customer = _dataBase.Customers.Get(customerDto.Id);
@@ -74,7 +80,9 @@ namespace TourAgency.Bll.Services
             }
             _dataBase.Save();
         }
-
+        /// <summary>
+        ///    cancellation of the tour with a reduction in discounts for customer
+        /// </summary>
         public void CancelTour(TourCustomerDTO tourCustomer)
         {
             _dataBase.TourCustomers.Delete(tourCustomer.Id);
@@ -89,7 +97,6 @@ namespace TourAgency.Bll.Services
             _dataBase.Customers.UpdateInfo(customer);
             _dataBase.Save();
         }
-
         public void SendFeedback(FeedbackDTO feedbackDTO)
         {
             var feedback = MappingDTO.MapFeedback(feedbackDTO);

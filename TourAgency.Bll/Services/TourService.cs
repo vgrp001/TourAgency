@@ -26,7 +26,6 @@ namespace TourAgency.Bll.Services
             var toursDto = MappingDTO.MapTourListDTO(tours.ToList());
             return toursDto;
         }
-
         public List<TourDTO> GetActiveTours()
         {
             var tours = _dataBase.Tours.GetAll();
@@ -41,22 +40,14 @@ namespace TourAgency.Bll.Services
             }
             return activeTours;
         }
-
         public TourDTO GetTourById(int id)
         {
-            try
-            {
-                var tour = _dataBase.Tours.Get(id);
-                var tourDto = MappingDTO.MapTourDTO(tour);
-                return tourDto;
-            }
-            catch (Exception)
-            {
-               
-            }
-            return null;
+            var tour = _dataBase.Tours.Get(id);
+            if (tour is null)
+                return null;
+            var tourDto = MappingDTO.MapTourDTO(tour);
+            return tourDto;
         }
-
         public List<TourCustomerDTO> GetRegisteredTours()
         {
             var tours = _dataBase.TourCustomers.GetAll();
@@ -72,7 +63,6 @@ namespace TourAgency.Bll.Services
             }
             return registeredTours;
         }
-
         public List<TourDTO> GetHotAndNewTours()
         {
             var tours = _dataBase.Tours.GetAll();
@@ -87,7 +77,5 @@ namespace TourAgency.Bll.Services
             }
             return hotTours;
         }
-       
-
     }
 }

@@ -2,9 +2,15 @@
 
 namespace TourAgency.Bll.BusinessModels
 {
+    //class describing the operation of the discount system
     public static class Discount
     {
+        //value to cancel the order
         public static int ConstCancellation { get; } = 5;
+        /// <summary>
+        ///     calculation of the cost of the tour for сustomer, 
+        ///     taking into account his discount
+        /// </summary>
         public static int DiscountPrice(int price, int discount)
         {
             int discountForPrice = (int)(discount * price / 100.0);
@@ -13,6 +19,9 @@ namespace TourAgency.Bll.BusinessModels
                 realPrice = 0;
             return realPrice;
         }
+        /// <summary>
+        ///     increase in discounts for customers with paid tour
+        /// </summary>
         public static int AddDiscount(int discount, int step, int maxDiscount)
         {
             int newDiscount = discount;
@@ -22,6 +31,9 @@ namespace TourAgency.Bll.BusinessModels
                 newDiscount = maxDiscount;
             return newDiscount;
         }
+        /// <summary>
+        ///     reduction of the discount for customer when canceling the tour
+        /// </summary>
         public static int ReduceDiscount(int discount)
         {
             int newDiscount = discount;

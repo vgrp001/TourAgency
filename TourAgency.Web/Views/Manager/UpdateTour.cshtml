@@ -13,7 +13,6 @@
         <div class="card-body">
             @using (Html.BeginForm("UpdateTour", "Manager", FormMethod.Post, htmlAttributes: new { @id = "Form" }))
             {
-                @Html.AntiForgeryToken()
                 @Html.ValidationSummary(false, "", htmlAttributes: new { @class = "text-danger" })
                 @Html.HiddenFor(model => model.Id, htmlAttributes: new { @name = "id" })
                 <div class="row">

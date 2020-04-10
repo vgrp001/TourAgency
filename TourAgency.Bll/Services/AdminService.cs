@@ -15,7 +15,6 @@ namespace TourAgency.Bll.Services
         private readonly IUnitOfWork _dataBase;
         public AdminService(IUnitOfWork dataBase) : base(dataBase)
         {
-            Log.Information("The time is {Now}", DateTime.Now); 
             _dataBase = dataBase;
         }
         public void DeleteTour(int id)
@@ -35,7 +34,6 @@ namespace TourAgency.Bll.Services
             var tour = MappingDTO.MapTour(tourDTO);
             _dataBase.Tours.Create(tour);
             _dataBase.Save();
-            // throw new ValidationException("Failed to create tour", "null error");
         }
         public List<ManagerDTO> GetAllManagers()
         {
@@ -43,14 +41,16 @@ namespace TourAgency.Bll.Services
             var managersDto = MappingDTO.MapManagerListDTO(managers.ToList());
             return managersDto;
         }
-
         public ManagerDTO GetManagerById(int id)
         {
             var manager = _dataBase.Managers.Get(id);
+            if(manager is null)
+            {
+                throw new ValidationException("Failed to get manager", "null error");
+            }
             var managerDto = MappingDTO.MapManagerDTO(manager);
             return managerDto;
         }
-
         public void BlockManager(int id)
         {
             var manager = _dataBase.Managers.Get(id);
@@ -63,7 +63,6 @@ namespace TourAgency.Bll.Services
                 throw new ValidationException("Failed to block manager", "null error");
             _dataBase.Save();
         }
-
         public void UnlockManager(int id)
         {
             var manager = _dataBase.Managers.Get(id);
@@ -76,21 +75,18 @@ namespace TourAgency.Bll.Services
                 throw new ValidationException("Failed to block manager", "null error");
             _dataBase.Save();
         }
-
         public void AddHotel(TypeOfHotelDTO typeOfHotelDTO)
         {
             var typeOfHotel = MappingDTO.MapTypeOfHotel(typeOfHotelDTO);
             _dataBase.TypeOfHotels.Create(typeOfHotel);
             _dataBase.Save();
         }
-
         public void AddTypeOfTour(TypeOfTourDTO typeOfTourDTO)
         {
             var typeOfTour = MappingDTO.MapTypeOfTour(typeOfTourDTO);
             _dataBase.TypeOfTours.Create(typeOfTour);
             _dataBase.Save();
         }
-
         public void AddCity(CityDTO cityDTO)
         {
             var city = MappingDTO.MapCity(cityDTO);

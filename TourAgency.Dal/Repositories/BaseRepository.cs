@@ -8,6 +8,7 @@ using TourAgency.Dal.Repositories.Interfaces;
 
 namespace TourAgency.Dal.Repositories
 {
+    //Base Repository (generic)
     public class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
     {
         protected readonly TourAgencyContext tourAgencyContext;

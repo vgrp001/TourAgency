@@ -1,12 +1,9 @@
 ﻿using Microsoft.AspNet.Identity;
-using Serilog;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using TourAgency.Bll.BusinessModels;
 using TourAgency.Bll.Services.Interfaces;
+using TourAgency.Web.Filters;
 using TourAgency.Web.Helpers;
 using TourAgency.Web.Models;
 using TourAgency.Web.Models.Paginations;
@@ -38,7 +35,7 @@ namespace TourAgency.Web.Controllers
             var activeTours = _customerService.GetActiveTours();
             var activeToursViewModel = MappingViewModel.MapTourListViewModel(activeTours);
 
-            int pageSize = 10;
+            int pageSize = 6;
             var activeToursPerPages = activeToursViewModel.Skip((page - 1) * pageSize).Take(pageSize);
             var pageInfo = new PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = activeToursViewModel.Count };
             var ivm = new TourPaginViewModel { PageInfo = pageInfo, Tours = activeToursPerPages.ToList() };
@@ -99,6 +96,7 @@ namespace TourAgency.Web.Controllers
                 return View(ivm);
             }
         }
+        [NullExceptionFilter]
         public ActionResult OrderTour(int id, int? realNumberOfPeople)
         {
             var tour = _customerService.GetTourById(id);
@@ -144,6 +142,7 @@ namespace TourAgency.Web.Controllers
             var toursViewModel = MappingViewModel.MapTourCustomerListViewModel(tours);
             return View(toursViewModel);
         }
+        [NullExceptionFilter]
         public ActionResult PersonalArea()
         {
             var userId = User.Identity.GetUserId();
@@ -154,7 +153,7 @@ namespace TourAgency.Web.Controllers
             ViewBag.Customer = cistomerViewModel;
             return View(toursViewModel);
         }
-
+        [NullExceptionFilter]
         public ActionResult ChangeInformation(string name, string surname)
         {
             var userId = User.Identity.GetUserId();
@@ -189,7 +188,7 @@ namespace TourAgency.Web.Controllers
                 return View(cistomerViewModel);
             }
         }
-
+        [ValidationExceptionFilter]
         public ActionResult TourCancellation(int? id)
         {
             var userId = User.Identity.GetUserId();

@@ -1,5 +1,4 @@
-﻿using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using TourAgency.Web.Filters;
 
 namespace TourAgency.Web
@@ -9,7 +8,8 @@ namespace TourAgency.Web
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
-            filters.Add(new NullException());
+            filters.Add(new NullExceptionFilter());
+            filters.Add(new ValidationExceptionFilter());
         }
     }
 }

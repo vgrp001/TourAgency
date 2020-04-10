@@ -1,7 +1,5 @@
 ﻿using System;
-using TourAgency.Dal.Entities;
 using TourAgency.Dal.Repositories;
-using TourAgency.Dal.Repositories.Interfaces;
 
 namespace TourAgency.Dal.UnitOfWork.Interfaces
 {

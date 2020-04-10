@@ -1,13 +1,9 @@
-﻿using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Serilog;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.IO;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TourAgency.Bll.Services.Interfaces;
+using TourAgency.Web.Filters;
 using TourAgency.Web.Helpers;
 using TourAgency.Web.Models;
 
@@ -30,8 +26,10 @@ namespace TourAgency.Web.Controllers
             }
             return View();
         }
+        [NullExceptionFilter]
         public ActionResult CreateNewTour(string startOfTour, string endOfTour,
-    int? typeOfTourId, int? typeOfHotelsId, int? maxNumberOfPeople, int? price, int? cityId, int? numberOfOrders, HttpPostedFileBase upload)
+        int? typeOfTourId, int? typeOfHotelsId, int? maxNumberOfPeople, int? price, 
+        int? cityId, int? numberOfOrders, HttpPostedFileBase upload)
         {
             if (Request.HttpMethod == "POST")
             {
@@ -99,6 +97,7 @@ namespace TourAgency.Web.Controllers
                 return View(listOption);
             }
         }
+        [ValidationExceptionFilter]
         public ActionResult DeleteTour(int id)
         {
             if (Request.HttpMethod == "POST")
@@ -126,6 +125,7 @@ namespace TourAgency.Web.Controllers
                 return View(tour);
             }
         }
+        [ValidationExceptionFilter]
         public ActionResult BlockUnlockCustomer(int? id)
         {
             if (id != null)
@@ -152,6 +152,7 @@ namespace TourAgency.Web.Controllers
             var customersViewModel = MappingViewModel.MapCustomerListViewModel(customers);
             return View(customersViewModel);
         }
+        [ValidationExceptionFilter]
         public ActionResult BlockUnlockManager(int? id)
         {
             var managers = _adminService.GetAllManagers();
@@ -220,7 +221,6 @@ namespace TourAgency.Web.Controllers
                 return View();
             }
         }
-
         protected override void Dispose(bool disposing)
         {
             _adminService.Dispose();

@@ -13,7 +13,6 @@
         <div class="card-body">
             @using (Html.BeginForm("DeleteTour", "Admin", FormMethod.Post, htmlAttributes: new { @id = "Form" }))
             {
-                @Html.AntiForgeryToken()
                 @Html.HiddenFor(model => model.Id, htmlAttributes: new { @name = "id" })
                 <b>Type of tour:</b>
                 @Html.DisplayFor(model => model.TypeOfTour.Type)

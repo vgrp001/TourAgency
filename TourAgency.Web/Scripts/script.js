@@ -9,7 +9,7 @@
         todayHighlight: true,
         startDate: today,
         autoclose: true,
-        orientation: 'top left'
+        orientation: 'bottom'
     };
     date_input.datepicker(options);
 })

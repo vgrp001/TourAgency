@@ -12,7 +12,6 @@ namespace TourAgency.Web.Controllers
     public class HomeController : Controller
     {
         private readonly ICustomerService _customerService;
-
         public HomeController(ICustomerService customerService)
         {
             _customerService = customerService;

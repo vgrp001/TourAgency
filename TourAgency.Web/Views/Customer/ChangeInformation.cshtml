@@ -14,7 +14,6 @@
         <div class="card-body">
             @using (Html.BeginForm("ChangeInformation", "Customer", FormMethod.Post, htmlAttributes: new { @id = "Form" }))
             {
-                @Html.AntiForgeryToken()
                 @Html.ValidationSummary(false, "", htmlAttributes: new { @class = "text-danger" })
                 <p>Your old Name: @Model.Name </p>
                 <b>Your new Name: </b>

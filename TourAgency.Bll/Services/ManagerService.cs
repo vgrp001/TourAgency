@@ -56,6 +56,9 @@ namespace TourAgency.Bll.Services
                 throw new ValidationException("Failed to unlock customer", "null error");
             _dataBase.Save();
         }
+        /// <summary>
+        ///    create a list of options for creating a tour
+        /// </summary>
         public ListOptionModel GetListOption()
         {
             var cites = new Mapper(new MapperConfiguration(cfg => cfg.CreateMap<City, CityDTO>())).Map<List<CityDTO>>(_dataBase.Cites.GetAll());
@@ -94,6 +97,10 @@ namespace TourAgency.Bll.Services
         public CustomerDTO GetCustomerById(int id)
         {
             var customer = _dataBase.Customers.Get(id);
+            if (customer is null)
+            {
+                throw new ValidationException("Failed to get customer", "null error");
+            }
             var customerDto = MappingDTO.MapCustomerDTO(customer);
             return customerDto;
         }
@@ -110,27 +117,30 @@ namespace TourAgency.Bll.Services
                 throw new ValidationException("Failed to change discount customer", "null error");
             _dataBase.Save();
         }
-
         public ManagerDTO GetManagerByIdentityUserId(string userId)
         {
             var managerId = _dataBase.Managers.GetCManagerIdByIdentityUserId(userId);
             if (managerId == -1)
+            {
                 return null;
+            }
             var manager = _dataBase.Managers.Get(managerId);
             var managerDto = MappingDTO.MapManagerDTO(manager);
             return managerDto;
         }
-
         public List<FeedbackDTO> GetActiveFeedbacks()
         {
-            var feedbacks = _dataBase.Feedbacks.GetAll().Where(f =>f.IsRead == false).ToList();
+            var feedbacks = _dataBase.Feedbacks.GetAll().Where(f => f.IsRead == false).ToList();
             var feedbacksDto = MappingDTO.MapFeedbackListDTO(feedbacks);
             return feedbacksDto;
         }
-
         public void ReadFeedback(int id)
         {
             var feedback = _dataBase.Feedbacks.Get(id);
+            if (feedback is null)
+            {
+                throw new ValidationException("Failed to get feedback", "null error");
+            }
             feedback.IsRead = true;
             _dataBase.Feedbacks.Update(feedback);
             _dataBase.Save();
